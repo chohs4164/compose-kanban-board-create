@@ -46,34 +46,7 @@ fun CreateNewTaskDialogBottom(isCreateEnabled: Boolean) {
     }
 }
 
-@Composable
-fun BottomButton(
-    text: String,
-    textColor: Color,
-    backgroundColor: Color,
-    enabled: Boolean,
-    onClick: () -> Unit,
-) {
-    Button(
-        onClick = { onClick() },
-        shape = RoundedCornerShape(10.dp),
-        enabled = enabled,
-        modifier = Modifier,
-        colors = buttonColors(
-            containerColor = backgroundColor,
-            contentColor = textColor,
-        ),
-    ) {
-        Text(
-            text = text,
-            modifier = Modifier,
-            style = TextStyle(
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Normal,
-            ),
-        )
-    }
-}
+
 
 @Preview
 @Composable
@@ -81,24 +54,4 @@ private fun CreateNewTaskDialogBottomPreview() {
     CreateNewTaskDialogBottom(true)
 }
 
-@Preview
-@Composable
-private fun BottomButtonPreview() {
-    Column {
-        BottomButton(
-            text = "생성",
-            textColor = Color.White,
-            backgroundColor = Color.Magenta,
-            onClick = { },
-            enabled = true,
-        )
 
-        BottomButton(
-            text = "생성",
-            textColor = Color.White,
-            backgroundColor = Color.Magenta,
-            onClick = { },
-            enabled = false,
-        )
-    }
-}
