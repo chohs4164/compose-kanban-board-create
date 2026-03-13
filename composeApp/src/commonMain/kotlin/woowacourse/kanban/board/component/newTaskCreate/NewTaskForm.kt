@@ -179,12 +179,6 @@ fun validateTagsAndWordCount(value: String): String? {
     }
     return null
 }
-//
-//@Preview(widthDp = 672, heightDp = 1000)
-//@Composable
-//private fun NewTaskFormPreview(widthDp: Dp = 672.dp, heightDp: Dp = 1000.dp) {
-//    NewTaskForm()
-//}
 
 @Preview
 @Composable
