@@ -39,14 +39,14 @@ fun TaskCard(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             TaskTitle(title)
-            if (script.isNotBlank()) Script(script, modifier = Modifier.testTag("script_area"))
-            if (tags.isNotEmpty()) Tags(tags, tagsModifier = Modifier.fillMaxWidth().testTag("tags_area"))
+            if (script.isNotBlank()) ScriptText(script, modifier = Modifier.testTag("script_area"))
+            if (tags.isNotEmpty()) TagList(tags, tagsModifier = Modifier.fillMaxWidth().testTag("tags_area"))
             // 해당 부분에 로직이 들어가는게 맞을까?
             HorizontalDivider(
                 thickness = 1.dp,
                 color = CustomColor.DIVIDER.color,
             )
-            Profile(nickname, modifier = Modifier)
+            ProfileCard(nickname, modifier = Modifier)
         }
     }
 }

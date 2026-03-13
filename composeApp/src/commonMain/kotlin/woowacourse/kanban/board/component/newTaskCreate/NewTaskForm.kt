@@ -33,7 +33,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.CustomColor
-import woowacourse.kanban.board.component.task.Profile
+import woowacourse.kanban.board.component.task.ProfileCard
 
 @Composable
 fun NewTaskForm(
@@ -94,8 +94,8 @@ fun NewTaskForm(
         ItemSelectionFormBox(
             text = "담당자 *", selectedProfileIndex,
             onItemSelected = onProfileChange,
-            { Profile("다이노", modifier = Modifier.align(Alignment.CenterStart)) },
-            { Profile("페임스", modifier = Modifier.align(Alignment.CenterStart)) },
+            { ProfileCard("다이노", modifier = Modifier.align(Alignment.CenterStart)) },
+            { ProfileCard("페임스", modifier = Modifier.align(Alignment.CenterStart)) },
         )
     }
 }
@@ -160,24 +160,6 @@ fun DefaultTextField(
             keyboardActions = KeyboardActions { validate(value) },
         )
     }
-}
-
-fun validateTitle(value: String?): String? {
-    if (value.isNullOrEmpty() || value.isBlank()) return "제목을 입력해 주세요."
-    return null
-}
-
-fun validateDescription(value: String): String? = null
-
-fun validateTagsAndWordCount(value: String): String? {
-    if (value.isBlank()) return null
-
-    val tags = value.split(',').map { it.trim() }
-    if (tags.size !in 0..5) return "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
-    tags.forEach { tag ->
-        if (tag.length !in 1..5) return "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
-    }
-    return null
 }
 
 @Preview

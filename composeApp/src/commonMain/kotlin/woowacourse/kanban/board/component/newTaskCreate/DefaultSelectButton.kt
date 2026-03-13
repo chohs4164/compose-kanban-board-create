@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.CustomColor
-import woowacourse.kanban.board.component.task.Profile
+import woowacourse.kanban.board.component.task.ProfileCard
 
 @Composable
 fun DefaultSelectButton(
@@ -55,6 +55,6 @@ fun DefaultSelectButtonPreview() {
         DefaultSelectButton(false, {}, { Text("조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘") })
         DefaultSelectButton(false, {}, { Text("To Do", modifier = Modifier.align(Alignment.Center)) })
         DefaultSelectButton(false, {}, { Text("In Progress") })
-        DefaultSelectButton(false, {}, { Profile("조디악", Modifier.align(Alignment.CenterStart)) })
+        DefaultSelectButton(false, {}, { ProfileCard("조디악", Modifier.align(Alignment.CenterStart)) })
     }
 }

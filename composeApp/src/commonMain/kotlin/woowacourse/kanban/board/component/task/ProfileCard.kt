@@ -21,7 +21,7 @@ import org.jetbrains.compose.resources.painterResource
 import woowacourse.kanban.board.CustomColor
 
 @Composable
-fun Profile(nickname: String, modifier: Modifier = Modifier) {
+fun ProfileCard(nickname: String, modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier,

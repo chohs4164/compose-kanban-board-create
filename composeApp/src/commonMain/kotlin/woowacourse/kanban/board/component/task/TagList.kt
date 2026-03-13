@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.CustomColor
 
 @Composable
-fun Tags(tags: List<String>, tagsModifier: Modifier = Modifier) {
+fun TagList(tags: List<String>, tagsModifier: Modifier = Modifier) {
     if (tags != emptyList<String>()) {
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
