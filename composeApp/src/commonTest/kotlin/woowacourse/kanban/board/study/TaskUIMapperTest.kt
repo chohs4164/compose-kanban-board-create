@@ -1,10 +1,11 @@
-package woowacourse.kanban.board
+package woowacourse.kanban.board.study
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import org.junit.Test
+import woowacourse.kanban.board.TaskUIMapper
 import woowacourse.kanban.board.data.Task
 
 @OptIn(ExperimentalTestApi::class)
