@@ -30,4 +30,16 @@ class CreateNewTaskDialogUiTest {
         onNodeWithTag("title_textField").performTextInput("Hello")
         onNodeWithText("생성").assertIsEnabled()
     }
+
+    @Test
+    fun `제목에 값이 없다가 입력되면 생성 버튼이 비활성화 상태였다가 활성화 된다`() = runComposeUiTest {
+        setContent {
+            CreateNewTaskDialog()
+        }
+
+        onNodeWithText("생성").assertIsNotEnabled()
+        onNodeWithText("To Do").assertExists()
+        onNodeWithTag("title_textField").performTextInput("할 일")
+        onNodeWithText("생성").assertIsEnabled()
+    }
 }
