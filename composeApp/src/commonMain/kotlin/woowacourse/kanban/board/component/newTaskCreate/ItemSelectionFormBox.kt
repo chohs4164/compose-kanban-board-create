@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ItemSelectionFormBox(
-    text: String,
+    text: String, //제목, 상태 등등..
     selectedItemIndex: Int,
     onItemSelected: (Int) -> Unit,
     vararg createButton: @Composable BoxScope.() -> Unit,
