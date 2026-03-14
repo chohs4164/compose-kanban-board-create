@@ -36,13 +36,13 @@ fun DefaultSelectButton(
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier.size(width, height),
         colors = outlinedButtonColors(
-            containerColor = if (isSelected) CustomColor.SELECTED_BUTTON_BACKGROUND_COLOR.color else Color.Transparent,
-            contentColor = if (isSelected) CustomColor.SELECTED_BUTTON_BORDER_AND_TEXT_COLOR.color else CustomColor.DEFAULT_TEXT_COLOR.color,
+            containerColor = if (isSelected) CustomColor.blue50 else Color.Transparent,
+            contentColor = if (isSelected) CustomColor.blue700 else CustomColor.gray700,
         ),
         border = BorderStroke(
             width = 2.dp,
-            color = if (isSelected) CustomColor.SELECTED_BUTTON_BORDER_AND_TEXT_COLOR.color
-            else CustomColor.TEXT_INPUT_DEFAULT_BORDER_COLOR.color,
+            color = if (isSelected) CustomColor.blue700
+            else CustomColor.gray400,
         ),
     ) {
         Box(

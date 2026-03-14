@@ -138,13 +138,13 @@ fun DefaultTextField(
                 .fillMaxWidth(),
 //                .background(color = Color.White,), 해당 함수는 TextField 제외 뒷 배경과 아래의 supportingText까지 바꿈
             textStyle = TextStyle(
-                color = CustomColor.GRAY_TEXT_COLOR.color,
+                color = CustomColor.gray950,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
             ),
             colors = TextFieldDefaults.colors(
                 unfocusedContainerColor = Color.White,
-                errorTextColor = CustomColor.TEXT_INPUT_ERROR_BORDER_COLOR.color,
+                errorTextColor = CustomColor.red700,
                 errorCursorColor = Color.Red,
             ),
             placeholder = { Text(hintText) },
@@ -161,7 +161,7 @@ fun DefaultTextField(
                     Icon(Icons.Filled.Error, "error", tint = MaterialTheme.colorScheme.error)
             },
             supportingText = {
-                if (isError && isDirty) Text(errorMessage ?: "") else (defaultSupportingText ?: "")
+                if (isError && isDirty) Text(errorMessage) else (defaultSupportingText ?: "")
             },
             keyboardActions = KeyboardActions { validate(value) },
         )

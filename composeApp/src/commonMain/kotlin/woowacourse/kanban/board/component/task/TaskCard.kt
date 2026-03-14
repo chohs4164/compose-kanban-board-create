@@ -30,7 +30,7 @@ fun TaskCard(
         colors = CardDefaults.cardColors(
             containerColor = Color.White,
         ),
-        border = BorderStroke(1.dp, CustomColor.CARD_BORDER.color),
+        border = BorderStroke(1.dp, CustomColor.gray200),
         shape = RoundedCornerShape(10.dp),
     ) {
         Column(
@@ -44,7 +44,7 @@ fun TaskCard(
             // 해당 부분에 로직이 들어가는게 맞을까?
             HorizontalDivider(
                 thickness = 1.dp,
-                color = CustomColor.DIVIDER.color,
+                color = CustomColor.gray100,
             )
             ProfileCard(nickname, modifier = Modifier)
         }

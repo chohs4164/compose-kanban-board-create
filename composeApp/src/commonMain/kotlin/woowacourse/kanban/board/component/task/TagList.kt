@@ -30,7 +30,7 @@ fun TagList(tags: List<String>, tagsModifier: Modifier = Modifier) {
                     tag.take(5),
                     Modifier
                         .background(
-                            color = CustomColor.TAG_BACKGROUND.color,
+                            color = CustomColor.gray100,
                             shape = RoundedCornerShape(14.dp),
                         ).padding(vertical = 4.dp, horizontal = 6.dp)
                         .testTag("tag_item"),
@@ -48,7 +48,7 @@ fun TagBox(filteredTag: String, tagsModifier: Modifier = Modifier) {
         Text(
             text = filteredTag,
             fontSize = 12.sp,
-            color = CustomColor.DEFAULT_TEXT_COLOR.color,
+            color = CustomColor.gray700,
         )
     }
 }
@@ -68,7 +68,7 @@ private fun TagsPreview(@PreviewParameter(TagsPreviewProvider::class) tags: List
                     tag.take(5),
                     Modifier
                         .background(
-                            color = CustomColor.TAG_BACKGROUND.color,
+                            color = CustomColor.gray100,
                             shape = RoundedCornerShape(14.dp),
                         ).padding(vertical = 4.dp, horizontal = 6.dp)
                         .testTag("tag_item"),
@@ -84,7 +84,7 @@ private fun TagBoxPreview(@PreviewParameter(TagBoxFilteredTagPreviewProvider::cl
     Box(
         modifier = Modifier
             .background(
-                color = CustomColor.TAG_BACKGROUND.color,
+                color = CustomColor.gray100,
                 shape = RoundedCornerShape(14.dp),
             )
             .padding(vertical = 4.dp, horizontal = 6.dp),
@@ -92,7 +92,7 @@ private fun TagBoxPreview(@PreviewParameter(TagBoxFilteredTagPreviewProvider::cl
         Text(
             text = filteredTag,
             fontSize = 12.sp,
-            color = CustomColor.DEFAULT_TEXT_COLOR.color,
+            color = CustomColor.gray700,
         )
     }
 }

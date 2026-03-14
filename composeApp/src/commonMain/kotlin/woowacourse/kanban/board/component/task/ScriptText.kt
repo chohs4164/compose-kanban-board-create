@@ -18,7 +18,7 @@ fun ScriptText(script: String, modifier: Modifier = Modifier) {
         modifier = modifier,
         fontSize = 14.sp,
         fontWeight = FontWeight.Normal,
-        color = CustomColor.SCRIPT.color,
+        color = CustomColor.gray600,
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
     )
@@ -32,7 +32,7 @@ private fun ScriptPreview(@PreviewParameter(ScriptPreviewProvider::class) script
         modifier = modifier,
         fontSize = 14.sp,
         fontWeight = FontWeight.Normal,
-        color = CustomColor.SCRIPT.color,
+        color = CustomColor.gray600,
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
     )

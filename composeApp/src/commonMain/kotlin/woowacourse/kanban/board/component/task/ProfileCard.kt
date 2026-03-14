@@ -35,7 +35,7 @@ fun ProfileCard(nickname: String, modifier: Modifier = Modifier) {
             text = nickname,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
-            color = CustomColor.PROFILE_NICKNAME.color,
+            color = CustomColor.gray700,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
@@ -55,7 +55,7 @@ private fun ProfilePreview(@PreviewParameter(ProfilePreviewParameterProvider::cl
             text = nickname,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
-            color = CustomColor.PROFILE_NICKNAME.color,
+            color = CustomColor.gray700,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
