@@ -1,7 +1,8 @@
-package woowacourse.kanban.board.data
+package woowacourse.kanban.board.unit.data
 
 import org.junit.Assert.assertThrows
 import org.junit.Test
+import woowacourse.kanban.board.data.Task
 
 class TaskTest {
     @Test

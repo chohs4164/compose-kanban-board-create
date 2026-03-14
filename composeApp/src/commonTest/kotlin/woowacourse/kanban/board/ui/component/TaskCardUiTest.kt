@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component
+package woowacourse.kanban.board.ui.component
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertCountEquals
@@ -10,7 +10,7 @@ import org.junit.Test
 import woowacourse.kanban.board.component.task.TaskCard
 
 @OptIn(ExperimentalTestApi::class)
-class TaskCardTest {
+class TaskCardUiTest {
     @Test
     fun `데이터가 주어지면 제목, 내용, 닉네임을 모두 표시`() = runComposeUiTest {
         setContent {

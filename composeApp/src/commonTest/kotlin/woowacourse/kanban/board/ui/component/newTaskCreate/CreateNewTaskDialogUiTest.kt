@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.component.newTeskCreate
+package woowacourse.kanban.board.ui.component.newTaskCreate
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsEnabled
@@ -11,7 +11,7 @@ import org.junit.Test
 import woowacourse.kanban.board.component.newTaskCreate.CreateNewTaskDialog
 
 @OptIn(ExperimentalTestApi::class)
-class CreateNewTaskDialogTest {
+class CreateNewTaskDialogUiTest {
     @Test
     fun `제목이 비어있으면 생성 버튼이 비활성화 된다`() = runComposeUiTest {
         setContent {

@@ -1,11 +1,11 @@
-package woowacourse.kanban.board.component.newTeskCreate
+package woowacourse.kanban.board.unit.component.newTaskCreate
 
 import org.junit.Test
 import woowacourse.kanban.board.component.newTaskCreate.validateTagsAndWordCount
 import woowacourse.kanban.board.component.newTaskCreate.validateTitle
 import kotlin.test.assertEquals
 
-class NewTaskFormTest {
+class ValidatorTest {
     @Test
     fun `제목이 null 또는 공백인 경우 제목을 입력해달라는 안내 문구 반환`() {
         val title1 = ""

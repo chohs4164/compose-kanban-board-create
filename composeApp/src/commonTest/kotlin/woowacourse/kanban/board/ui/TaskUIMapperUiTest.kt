@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.study
+package woowacourse.kanban.board.ui
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
@@ -9,7 +9,7 @@ import woowacourse.kanban.board.TaskUIMapper
 import woowacourse.kanban.board.data.Task
 
 @OptIn(ExperimentalTestApi::class)
-class TaskUIMapperTest {
+class TaskUIMapperUiTest {
     @Test
     fun `할 일 UI를 생성한다`() = runComposeUiTest {
         val tasks = listOf(
