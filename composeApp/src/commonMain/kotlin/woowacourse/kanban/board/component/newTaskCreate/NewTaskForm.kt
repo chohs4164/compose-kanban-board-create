@@ -11,6 +11,8 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Error
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FloatingActionButtonDefaults.elevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -87,6 +89,8 @@ fun NewTaskForm(
             text = "상태 *",
             selectedItemIndex = selectedStatusIndex,
             onItemSelected = onStatusChange,
+            width = 200.dp,
+            height = 52.dp,
             { Text("To Do", modifier = Modifier.align(Alignment.Center)) },
             { Text("In Progress", modifier = Modifier.align(Alignment.Center)) },
             { Text("Done", modifier = Modifier.align(Alignment.Center)) },
@@ -94,6 +98,8 @@ fun NewTaskForm(
         ItemSelectionFormBox(
             text = "담당자 *", selectedProfileIndex,
             onItemSelected = onProfileChange,
+            width = 200.dp,
+            height = 68.dp,
             { ProfileCard("다이노", modifier = Modifier.align(Alignment.CenterStart)) },
             { ProfileCard("페임스", modifier = Modifier.align(Alignment.CenterStart)) },
         )
@@ -182,5 +188,28 @@ private class DefaultTextFieldParameterProvider() : PreviewParameterProvider<Str
         "제목 *",
         "설명",
         "태그",
+    )
+}
+
+@Preview(widthDp = 672, heightDp = 818)
+@Composable
+private fun NewTaskFormPreview() {
+    var title by remember { mutableStateOf("로그인 버튼 버그 수정") }
+    var description by remember { mutableStateOf("버튼 클릭 시 간헐적으로 로딩이 종료되지 않는 문제를 수정합니다.") }
+    var tags by remember { mutableStateOf("버그,긴급") }
+    var selectedStatusIndex by remember { mutableStateOf(1) }
+    var selectedProfileIndex by remember { mutableStateOf(0) }
+
+    NewTaskForm(
+        title = title,
+        onTitleChange = { title = it },
+        description = description,
+        onDescriptionChange = { description = it },
+        tags = tags,
+        onTagsChange = { tags = it },
+        selectedStatusIndex = selectedStatusIndex,
+        onStatusChange = { selectedStatusIndex = it },
+        selectedProfileIndex = selectedProfileIndex,
+        onProfileChange = { selectedProfileIndex = it },
     )
 }
