@@ -166,7 +166,7 @@ private class DefaultTextFieldPreviewPrvoider() : PreviewParameterProvider<TextF
 
 @Preview
 @Composable
-fun DefaultTextFieldPreview(
+private fun DefaultTextFieldPreview(
     @PreviewParameter(DefaultTextFieldPreviewPrvoider::class) item: TextFieldPreviewCase
 ) {
     DefaultTextField(
