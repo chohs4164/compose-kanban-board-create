@@ -2,22 +2,10 @@ package woowacourse.kanban.board.component.newTaskCreate
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Error
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FloatingActionButtonDefaults.elevation
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,16 +13,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import woowacourse.kanban.board.CustomColor
 import woowacourse.kanban.board.component.task.ProfileCard
 
 @Composable
@@ -49,41 +29,51 @@ fun NewTaskForm(
     onStatusChange: (Int) -> Unit,
     selectedProfileIndex: Int,
     onProfileChange: (Int) -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(24.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         DefaultTextField(
+            modifier = Modifier.fillMaxWidth(),
+            textFieldTag = "title_textField",
+            titleText = "제목 *",
             value = title,
-            text = "제목 *",
             onValueChange = onTitleChange,
             hintText = "태스크 제목을 입력하세요",
             defaultSupportingText = "",
             validate = {
                 validateTitle(it)
             },
-            modifier = Modifier.testTag("title_textField")
+            minLines = 1,
+            maxLines = 1
         )
         DefaultTextField(
+            modifier = Modifier.fillMaxWidth(),
+            textFieldTag = "description_textField",
+            titleText = "설명",
             value = description,
-            text = "설명",
             onValueChange = onDescriptionChange,
             hintText = "태스크에 대한 자세한 설명을 입력하세요",
             defaultSupportingText = null,
             validate = { validateDescription(it) },
-            minLines = 4,
-            maxLines = 5,
+            minLines = 6,
+            maxLines = 6,
         )
         DefaultTextField(
+            modifier = Modifier.fillMaxWidth(),
+            textFieldTag = "tags_textField",
+            titleText = "태그",
             value = tags,
-            text = "태그",
             onValueChange = onTagsChange,
             hintText = "태그를 쉼표로 구분하여 입력하세요 (예: 버그, 긴급)",
             defaultSupportingText = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.",
             validate = { validateTagsAndWordCount(it) },
+            minLines = 1,
+            maxLines = 1
         )
         ItemSelectionFormBox(
             text = "상태 *",
@@ -106,98 +96,13 @@ fun NewTaskForm(
     }
 }
 
-@Composable
-fun DefaultTextField(
-    value: String,
-    modifier: Modifier = Modifier,
-    text: String,
-    onValueChange: (String) -> Unit,
-    hintText: String,
-    defaultSupportingText: String?,
-    validate: (inputValue: String) -> String?,
-    minLines: Int = 1,
-    maxLines: Int = 1,
-) {
-    var isDirty by remember { mutableStateOf(false) }
-
-    val errorMessage = validate(value)
-    val isError = (errorMessage != null)
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth(),
-    ) {
-        Text(
-            text = text,
-            fontSize = 20.sp,
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(
-            value = value,
-            modifier = modifier
-                .fillMaxWidth(),
-//                .background(color = Color.White,), 해당 함수는 TextField 제외 뒷 배경과 아래의 supportingText까지 바꿈
-            textStyle = TextStyle(
-                color = CustomColor.gray950,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-            ),
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = Color.White,
-                errorTextColor = CustomColor.red700,
-                errorCursorColor = Color.Red,
-            ),
-            placeholder = { Text(hintText) },
-            onValueChange = {
-                onValueChange(it)
-                isDirty = true
-            },
-            singleLine = false,
-            minLines = minLines,
-            maxLines = maxLines,
-            isError = (isError && isDirty),
-            trailingIcon = {
-                if (isError && isDirty)
-                    Icon(Icons.Filled.Error, "error", tint = MaterialTheme.colorScheme.error)
-            },
-            supportingText = {
-                if (isError && isDirty) Text(errorMessage) else (defaultSupportingText ?: "")
-            },
-            keyboardActions = KeyboardActions { validate(value) },
-        )
-    }
-}
-
-@Preview
-@Composable
-fun DefaultTextFieldPreview(@PreviewParameter(DefaultTextFieldParameterProvider::class) text: String) {
-    DefaultTextField(
-        value = text,
-        text = "hint",
-        onValueChange = { null },
-        hintText = " ",
-        defaultSupportingText = "",
-        validate = { validateTitle("text") },
-        minLines = 1,
-        maxLines = 1,
-    )
-}
-
-private class DefaultTextFieldParameterProvider() : PreviewParameterProvider<String> {
-    override val values = sequenceOf<String>(
-        "제목 *",
-        "설명",
-        "태그",
-    )
-}
-
 @Preview(widthDp = 672, heightDp = 818)
 @Composable
 private fun NewTaskFormPreview() {
-    var title by remember { mutableStateOf("로그인 버튼 버그 수정") }
-    var description by remember { mutableStateOf("버튼 클릭 시 간헐적으로 로딩이 종료되지 않는 문제를 수정합니다.") }
-    var tags by remember { mutableStateOf("버그,긴급") }
-    var selectedStatusIndex by remember { mutableStateOf(1) }
+    var title by remember { mutableStateOf("태스크 제목을 입력하세요") }
+    var description by remember { mutableStateOf("태스크에 대한 자세한 설명을 입력하세요") }
+    var tags by remember { mutableStateOf("태그를 쉼표로 구분하여 입력하세요 (예: 버그,긴급)") }
+    var selectedStatusIndex by remember { mutableStateOf(0) }
     var selectedProfileIndex by remember { mutableStateOf(0) }
 
     NewTaskForm(

@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.cancel_button
 import org.jetbrains.compose.resources.painterResource
+import woowacourse.kanban.board.CustomColor
 
 @Composable
 @Preview
@@ -28,14 +29,14 @@ fun TopBar() {
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
-            text = "새 태스크 생성",
             modifier = Modifier.padding(
-                horizontal = 4.dp,
+                horizontal = 4.dp
             ),
+            text = "새 태스크 생성",
             fontWeight = FontWeight.SemiBold,
             fontSize = 20.sp,
-
-            )
+            color = CustomColor.gray900,
+        )
         Icon(
             painter = painterResource(Res.drawable.cancel_button),
             contentDescription = "cancel button",
