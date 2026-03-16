@@ -72,7 +72,13 @@ fun DefaultTextField(
                     unfocusedContainerColor = Color.White,
                     errorTextColor = CustomColor.red700
                 ),
-                placeholder = { Text(hintText) },
+                placeholder = {
+                    if (isError && isDirty) {
+                        Text(errorMessage)
+                    } else {
+                        Text(hintText)
+                    }
+                },
                 onValueChange = {
                     onValueChange(it)
                     isDirty = true

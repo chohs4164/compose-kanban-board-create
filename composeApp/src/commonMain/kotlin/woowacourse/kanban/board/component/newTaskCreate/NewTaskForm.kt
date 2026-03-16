@@ -44,7 +44,7 @@ fun NewTaskForm(
             value = title,
             onValueChange = onTitleChange,
             hintText = "태스크 제목을 입력하세요",
-            defaultSupportingText = "",
+            defaultSupportingText = null,
             validate = {
                 validateTitle(it)
             },

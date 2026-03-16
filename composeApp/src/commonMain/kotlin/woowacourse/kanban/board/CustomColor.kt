@@ -13,4 +13,5 @@ object CustomColor {
     val blue50 = Color(0xFFEFF6FF)
     val blue700 = Color(0xFF1447E6)
     val red700 = Color(0xFFB3261E)
+    val violet = Color(0xFF4F39F6)
 }
