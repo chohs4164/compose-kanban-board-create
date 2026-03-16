@@ -1,35 +1,61 @@
 package woowacourse.kanban.board.unit.component.newTaskCreate
 
 import org.junit.Test
-import woowacourse.kanban.board.component.newTaskCreate.validateTagsAndWordCount
+import woowacourse.kanban.board.component.newTaskCreate.NewTaskFormError
+import woowacourse.kanban.board.component.newTaskCreate.validateNewTaskForm
+import woowacourse.kanban.board.component.newTaskCreate.validateTags
 import woowacourse.kanban.board.component.newTaskCreate.validateTitle
+import woowacourse.kanban.board.data.NewTaskFormData
 import kotlin.test.assertEquals
 
-enum class NewTaskFormError{
-    TITLE_EMPTY, // 제목이 비어있는 경우
-    TAG_FORMAT_INVALID, // 태그 형식이 유효하지 않을 경우
-    TAG_LIMIT_EXCEEDED // 태그의 글자수나 태그의 갯수가 유효범위를 벗어난 경우
-}
 class ValidatorTest {
     @Test
-    fun `제목이 null 또는 공백인 경우 제목을 입력해달라는 안내 문구 반환`() {
+    fun `제목이 null 또는 공백인 경우 TITLE_EMPTY를 반환한다`() {
         val title1 = ""
         val title2 = "  "
         val title3 = null
 
-        val answerString = "제목을 입력해 주세요."
+        val expected = NewTaskFormError.TITLE_EMPTY
 
-        assertEquals(answerString, validateTitle(title1))
-        assertEquals(answerString, validateTitle(title2))
-        assertEquals(answerString, validateTitle(title3))
+        assertEquals(expected, validateTitle(title1))
+        assertEquals(expected, validateTitle(title2))
+        assertEquals(expected, validateTitle(title3))
     }
 
     @Test
-    fun `태그의 개수가 5개가 넘어가는 경우 포맷에 맞춰 입력해달라는 안내 문구 반환`() {
+    fun `태그의 개수가 5개가 넘어가는 경우 TAG_LIMIT_EXCEEDED를 반환한다`() {
         val tags = "조디악,사무엘,호이,앨리,아키,허닛"
 
-        val answerString = "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
+        val expected = NewTaskFormError.TAG_LIMIT_EXCEEDED
 
-        assertEquals(answerString, validateTagsAndWordCount(tags))
+        assertEquals(expected, validateTags(tags))
+    }
+
+    @Test
+    fun `비어있는 태그가 포함되면 TAG_FORMAT_INVALID를 반환한다`() {
+        val tags = "버그,,긴급"
+
+        assertEquals(NewTaskFormError.TAG_FORMAT_INVALID, validateTags(tags))
+    }
+
+    @Test
+    fun `폼 전체 검증 시 에러 목록을 순서대로 반환한다`() {
+        val form = NewTaskFormData(
+            title = "",
+            description = "",
+            tags = "조디악,사무엘,호이,앨리,아키,허닛",
+            selectedStatusIndex = 0,
+            selectedProfileIndex = 0,
+        )
+
+        val result = validateNewTaskForm(form)
+
+        assertEquals(
+            listOf(
+                NewTaskFormError.TITLE_EMPTY,
+                NewTaskFormError.TAG_LIMIT_EXCEEDED,
+            ),
+            result,
+        )
     }
 }
