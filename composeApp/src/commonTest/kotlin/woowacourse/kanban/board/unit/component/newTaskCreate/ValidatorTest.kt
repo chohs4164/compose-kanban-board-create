@@ -5,6 +5,11 @@ import woowacourse.kanban.board.component.newTaskCreate.validateTagsAndWordCount
 import woowacourse.kanban.board.component.newTaskCreate.validateTitle
 import kotlin.test.assertEquals
 
+enum class NewTaskFormError{
+    TITLE_EMPTY, // 제목이 비어있는 경우
+    TAG_FORMAT_INVALID, // 태그 형식이 유효하지 않을 경우
+    TAG_LIMIT_EXCEEDED // 태그의 글자수나 태그의 갯수가 유효범위를 벗어난 경우
+}
 class ValidatorTest {
     @Test
     fun `제목이 null 또는 공백인 경우 제목을 입력해달라는 안내 문구 반환`() {
