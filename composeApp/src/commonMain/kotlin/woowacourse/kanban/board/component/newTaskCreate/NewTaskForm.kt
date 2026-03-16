@@ -45,9 +45,7 @@ fun NewTaskForm(
             onValueChange = onTitleChange,
             hintText = "태스크 제목을 입력하세요",
             defaultSupportingText = null,
-            validate = {
-                validateTitle(it)
-            },
+            validate = { validateTitle(it)?.message() },
             minLines = 1,
             maxLines = 1
         )
@@ -71,7 +69,7 @@ fun NewTaskForm(
             onValueChange = onTagsChange,
             hintText = "태그를 쉼표로 구분하여 입력하세요 (예: 버그, 긴급)",
             defaultSupportingText = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.",
-            validate = { validateTagsAndWordCount(it) },
+            validate = { validateTags(it)?.message() },
             minLines = 1,
             maxLines = 1
         )

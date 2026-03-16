@@ -177,7 +177,7 @@ private fun DefaultTextFieldPreview(
         onValueChange = {},
         hintText = item.hint,
         defaultSupportingText = "",
-        validate = { validateTitle("text") },
+        validate = { validateTitle(it)?.message() },
         minLines = 1,
         maxLines = 1,
     )
