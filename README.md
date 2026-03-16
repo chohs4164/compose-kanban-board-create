@@ -1,40 +1,30 @@
-This is a Kotlin Multiplatform project targeting Android, Desktop (JVM).
+# 칸반 보드 생성(상품 목록)
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
-
-### Build and Run Android Application
-
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
-
-### Build and Run Desktop (JVM) Application
-
-To build and run the development version of the desktop app, use the run configuration from the run widget
-in your IDE’s toolbar or run it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:run
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:run
-  ```
-
----
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## 기능 구현 사항
+- [x] 제목 입력
+  - [x] 필수 입력이다 
+  - [x] 힌트 텍스트 제공
+  - [x] 유효하지 않은 제목을 입력하면 테두리선, 경고 아이콘과 함께 에러 문구를 Supporting text에 띄운다
+    - [x] 아무것도 입력하지 않은 경우 유효하지 않은 제목이다
+    - [x] 공백 또는 빈칸만 있는 경우 유효하지 않은 제목이다
+- [x] 설명
+  - [x] 선택 입력이다
+  - [x] 힌트 텍스트 제공
+- [x] 태그
+  - [x] 선택 입력이다 
+  - [x] 힌트 텍스트와 Supporting text 제공한다
+  - [x] ','를 기준으로 태그를 생성한다
+  - [x] 유효하지 않은 태그를 입력하면 테두리선, 경고 아이콘과 함께 에러 문구를 Supporting text에 띄운다
+    - [x] 입력된 태그 갯수 검증 (5개 이내)
+    - [x] 하나의 태그의 글자수 검증 (5자 이내)
+- [x] 상태
+  - [x] Todo, In Progress, Done 중 하나만 선택해야 한다
+  - [x] 기본적으로 첫 번째 항목인 Todo가 선택되어 있다
+  - [x] 클릭하면 선택된 항목의 배경과 테두리가 파란색으로 변한다
+- [x] 담당자
+  - [x] 기본적으로 첫 번째 항목으로 선택되어있다
+  - [x] 담당자 중 한 명은 선택되어야 한다
+  - [x] 클릭하면 선택된 항목의 배경과 테두리가 파란색으로 변한다
+  - [x] 담당자 수가 많아지면 옆으로 넘겨 선택할 수 있다
+- [x] 생성
+  - [x] 각 컴포넌트들의 유효성이 통과한다면 생성 버튼이 활성화 된다
