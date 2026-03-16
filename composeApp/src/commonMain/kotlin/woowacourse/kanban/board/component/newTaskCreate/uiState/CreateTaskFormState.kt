@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import woowacourse.kanban.board.component.newTaskCreate.validateTagsAndWordCount
+import woowacourse.kanban.board.component.newTaskCreate.validateTags
 import woowacourse.kanban.board.component.newTaskCreate.validateTitle
 
 @Stable
@@ -18,7 +18,7 @@ class CreateTaskFormState {
     var selectedProfileIndex by mutableStateOf(0)
 
     val isCreateEnabled: Boolean
-        get() = validateTitle(titleText) == null && validateTagsAndWordCount(tags) == null
+        get() = validateTitle(titleText) == null && validateTags(tags) == null
 }
 
 @Composable
