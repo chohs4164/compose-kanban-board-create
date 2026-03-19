@@ -17,7 +17,7 @@ fun TaskTitle(title: String, modifier: Modifier = Modifier) {
         text = title,
         modifier = modifier,
         fontSize = 16.sp,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Medium,
         color = CustomColor.gray900,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
@@ -26,12 +26,16 @@ fun TaskTitle(title: String, modifier: Modifier = Modifier) {
 
 @Composable
 @Preview
-private fun TaskTitlePreview(@PreviewParameter(TaskTitlePreviewProvider::class) title: String, modifier: Modifier = Modifier) {
+private fun TaskTitlePreview(
+    @PreviewParameter(TaskTitlePreviewProvider::class)
+    title: String,
+    modifier: Modifier = Modifier,
+) {
     Text(
         text = title,
         modifier = modifier,
         fontSize = 16.sp,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Medium,
         color = CustomColor.gray900,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,

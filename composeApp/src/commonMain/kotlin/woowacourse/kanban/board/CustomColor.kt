@@ -14,4 +14,14 @@ object CustomColor {
     val blue700 = Color(0xFF1447E6)
     val red700 = Color(0xFFB3261E)
     val violet = Color(0xFF4F39F6)
+    val VIVIDBLUE = Color(0xFF155DFC)
+    val PASTELBLUE = Color(0xFFBEDBFF)
+    val ALICEBLUE = Color(0xFFEFF6FF)
+    val VIBRANTORANGE = Color(0xFFE17100)
+    val CREAM = Color(0xFFFFFBEB)
+    val MELLOWYELLOW = Color(0xFFFEE685)
+
+    val FORESTGREEN = Color(0xFF00A63E)
+    val MINTWHITE = Color(0xFFF0FDF4)
+    val LIGHTMINT = Color(0xFFB9F8CF)
 }
