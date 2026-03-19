@@ -18,7 +18,7 @@ fun TaskTitle(title: String, modifier: Modifier = Modifier) {
         modifier = modifier,
         fontSize = 16.sp,
         fontWeight = FontWeight.Medium,
-        color = CustomColor.gray900,
+        color = CustomColor.Gray900,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
     )
@@ -36,7 +36,7 @@ private fun TaskTitlePreview(
         modifier = modifier,
         fontSize = 16.sp,
         fontWeight = FontWeight.Medium,
-        color = CustomColor.gray900,
+        color = CustomColor.Gray900,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
     )

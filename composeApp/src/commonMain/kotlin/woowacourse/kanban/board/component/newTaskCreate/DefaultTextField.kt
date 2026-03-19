@@ -64,13 +64,13 @@ fun DefaultTextField(
                     .testTag(textFieldTag),
                 value = value,
                 textStyle = TextStyle(
-                    color = CustomColor.gray950,
+                    color = CustomColor.Gray950,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                 ),
                 colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color.White,
-                    errorTextColor = CustomColor.red700
+                    errorTextColor = CustomColor.Red700
                 ),
                 placeholder = {
                     if (isError && isDirty) {
@@ -104,14 +104,14 @@ fun DefaultTextField(
                     .testTag(textFieldTag),
                 value = value,
                 textStyle = TextStyle(
-                    color = CustomColor.gray950,
+                    color = CustomColor.Gray950,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                 ),
                 colors = TextFieldDefaults.colors(
-                    unfocusedPlaceholderColor = CustomColor.gray400,
+                    unfocusedPlaceholderColor = CustomColor.Gray400,
                     unfocusedContainerColor = Color.White,
-                    errorTextColor = CustomColor.red700
+                    errorTextColor = CustomColor.Red700
                 ),
                 placeholder = { Text(hintText) },
                 onValueChange = {

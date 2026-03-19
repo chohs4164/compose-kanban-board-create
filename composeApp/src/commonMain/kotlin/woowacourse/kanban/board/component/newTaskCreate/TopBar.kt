@@ -35,7 +35,7 @@ fun TopBar() {
             text = "새 태스크 생성",
             fontWeight = FontWeight.SemiBold,
             fontSize = 20.sp,
-            color = CustomColor.gray900,
+            color = CustomColor.Gray900,
         )
         Icon(
             painter = painterResource(Res.drawable.cancel_button),

@@ -105,9 +105,9 @@ class ProgressCardPreviewProvider : PreviewParameterProvider<ProgressCardPreview
     override val values = sequenceOf(
         ProgressCardPreviewModel(
             title = "To Do",
-            headerColor = CustomColor.VIVIDBLUE,
-            bodyColor = CustomColor.ALICEBLUE,
-            borderColor = CustomColor.PASTELBLUE,
+            headerColor = CustomColor.Blue600,
+            bodyColor = CustomColor.Blue50,
+            borderColor = CustomColor.Blue200,
             tasks = listOf<Task>(
                 Task(
                     taskTitle = "LazyColumn 컴포넌트 구현",
@@ -125,9 +125,9 @@ class ProgressCardPreviewProvider : PreviewParameterProvider<ProgressCardPreview
         ),
         ProgressCardPreviewModel(
             title = "In Progress",
-            headerColor = CustomColor.VIBRANTORANGE,
-            bodyColor = CustomColor.CREAM,
-            borderColor = CustomColor.MELLOWYELLOW,
+            headerColor = CustomColor.Orange700,
+            bodyColor = CustomColor.Yellow100,
+            borderColor = CustomColor.Yellow300,
             tasks = listOf<Task>(
                 Task(
                     taskTitle = "상태 관리 리팩토링",
@@ -139,9 +139,9 @@ class ProgressCardPreviewProvider : PreviewParameterProvider<ProgressCardPreview
         ),
         ProgressCardPreviewModel(
             title = "Done",
-            headerColor = CustomColor.FORESTGREEN,
-            bodyColor = CustomColor.MINTWHITE,
-            borderColor = CustomColor.LIGHTMINT,
+            headerColor = CustomColor.Green700,
+            bodyColor = CustomColor.Green50,
+            borderColor = CustomColor.Green200,
             tasks = listOf<Task>(
                 Task(
                     taskTitle = "리컴포지션 최적화",

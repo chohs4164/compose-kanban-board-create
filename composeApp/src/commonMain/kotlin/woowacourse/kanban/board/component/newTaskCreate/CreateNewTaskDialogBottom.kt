@@ -32,7 +32,7 @@ fun CreateNewTaskDialogBottom(isCreateEnabled: Boolean) {
         BottomButton(
             text = "생성",
             textColor = Color.White,
-            backgroundColor = CustomColor.violet,
+            backgroundColor = CustomColor.Violet600,
             enabled = isCreateEnabled,
             onClick = { },
         )
@@ -45,5 +45,4 @@ fun CreateNewTaskDialogBottom(isCreateEnabled: Boolean) {
 private fun CreateNewTaskDialogBottomPreview() {
     CreateNewTaskDialogBottom(true)
 }
-
 
