@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanbanboard.board.CustomColor
+import woowacourse.kanbanboard.board.data.KanbanBoardSampleData
 import woowacourse.kanbanboard.newTaskCreate.component.BottomButton
 
 @Composable
@@ -30,6 +31,9 @@ fun Header(
     doneCount: Int,
     onClick: () -> Unit,
 ) {
+    val progress = if (totalCount == 0) 0f else doneCount.toFloat() / totalCount.toFloat()
+    val completionRate = if (totalCount == 0) 0 else (progress * 100).toInt()
+
     Column(
         modifier = Modifier
             .size(
@@ -60,8 +64,7 @@ fun Header(
                     fontWeight = FontWeight.Medium,
                 )
                 Text(
-                    // 완료율에 전체 task수와 done수를 받아와야함
-                    text = "완료율: ${((doneCount.toDouble() / totalCount) * 100).toInt()}% (${doneCount}/${totalCount})",
+                    text = "완료율: ${completionRate}% (${doneCount}/${totalCount})",
                     color = CustomColor.Gray500,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
@@ -72,14 +75,13 @@ fun Header(
                 textColor = Color.White,
                 backgroundColor = CustomColor.Violet600,
                 enabled = true,
-                onClick = { onClick },
+                onClick = onClick,
             )
         }
-        val progress = if (totalCount == 0) 0f else doneCount.toFloat() / totalCount.toFloat()
 
         LinearProgressIndicator(
             gapSize = 0.dp,
-            strokeCap = StrokeCap.Square,
+            strokeCap = StrokeCap.Butt,
             progress = { progress },
             modifier = Modifier
                 .fillMaxWidth()
@@ -87,6 +89,7 @@ fun Header(
                 .clip(RoundedCornerShape(100.dp)),
             color = CustomColor.Violet600,
             trackColor = CustomColor.Gray200,
+            drawStopIndicator = {}
         )
     }
 }
@@ -95,8 +98,8 @@ fun Header(
 @Composable
 private fun HeaderPreview() {
     Header(
-        totalCount = 6,
-        doneCount = 3,
+        totalCount = KanbanBoardSampleData.totalCount,
+        doneCount = KanbanBoardSampleData.doneCount,
         onClick = {},
     )
 }
