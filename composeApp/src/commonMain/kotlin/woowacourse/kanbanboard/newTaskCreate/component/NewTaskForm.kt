@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,7 +33,7 @@ fun NewTaskForm(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .size(672.dp, 654.dp)
             .background(Color.White)
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -67,8 +68,8 @@ fun NewTaskForm(
                     it
                 )
             },
-            minLines = 6,
-            maxLines = 6,
+            minLines = 4,
+            maxLines = 4,
         )
         DefaultTextField(
             modifier = Modifier.fillMaxWidth(),

@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -29,7 +30,7 @@ fun KanbanBoard(
 ) {
     // 새 태스크 생성 버튼을 눌렀을 때 상태를 변경하기 위함
     var isDialogOpen by remember { mutableStateOf(false) }
-
+    var taskListState = remember { mutableStateListOf<Task>()}
     Column(
         modifier = Modifier
             .size(1295.dp, 909.dp)
@@ -71,7 +72,12 @@ fun KanbanBoard(
         }
     }
     if (isDialogOpen) {
-        CreateNewTaskDialogOverlay(onDismiss = { isDialogOpen = false })
+        CreateNewTaskDialogOverlay(
+            onDismiss = { isDialogOpen = false },
+            onCreateTask = { task ->
+                taskListState.add(task)
+            }
+        )
     }
 }
 

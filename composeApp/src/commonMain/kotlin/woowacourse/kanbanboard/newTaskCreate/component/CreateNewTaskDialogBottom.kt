@@ -1,5 +1,6 @@
 package woowacourse.kanbanboard.newTaskCreate.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,13 +13,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanbanboard.board.CustomColor
+import woowacourse.kanbanboard.newTaskCreate.data.Task
 
 @Composable
-fun CreateNewTaskDialogBottom(isCreateEnabled: Boolean) {
+fun CreateNewTaskDialogBottom(
+    isCreateEnabled: Boolean,
+    onCreate : () -> Unit,
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 24.dp),
+            .background(Color.White)
+            .padding(horizontal = 24.dp, vertical = 16.dp),
         horizontalArrangement = Arrangement.End,
     ) {
         BottomButton(
@@ -34,7 +40,7 @@ fun CreateNewTaskDialogBottom(isCreateEnabled: Boolean) {
             textColor = Color.White,
             backgroundColor = CustomColor.Violet600,
             enabled = isCreateEnabled,
-            onClick = { },
+            onClick = onCreate,
         )
     }
 }
@@ -44,7 +50,8 @@ fun CreateNewTaskDialogBottom(isCreateEnabled: Boolean) {
 @Composable
 private fun CreateNewTaskDialogBottomPreview() {
     CreateNewTaskDialogBottom(
-        true
+        isCreateEnabled = true,
+        onCreate = {}
     )
 }
 
