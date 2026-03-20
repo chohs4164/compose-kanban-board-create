@@ -1,6 +1,7 @@
 package woowacourse.kanbanboard.newTaskCreate.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -18,7 +19,8 @@ fun CreateNewTaskDialogOverlay(onDismiss: () -> Unit) {
         modifier = Modifier
             .size(1294.dp, 909.dp)
             .background(CustomColor.Gray800.copy(alpha = 0.61f))
-            .verticalScroll(rememberScrollState()),
+            .verticalScroll(rememberScrollState())
+            .horizontalScroll(rememberScrollState()),
         contentAlignment = Alignment.Center,
 
         ) {
