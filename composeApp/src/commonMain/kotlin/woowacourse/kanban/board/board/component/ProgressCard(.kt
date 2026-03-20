@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,7 +27,7 @@ import woowacourse.kanban.board.data.Task
 
 @Composable
 fun ProgressCard(
-    text: String,
+    title: String,
     headerColor: Color,
     borderColor: Color,
     bodyColor: Color,
@@ -53,7 +52,7 @@ fun ProgressCard(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                text = text,
+                text = title,
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -174,7 +173,7 @@ private fun ProgressCardPreview(
 model:ProgressCardPreviewModel,
 ) {
     ProgressCard(
-        text = model.title, // 헤더:TO DO/In Progress/Done
+        title = model.title, // 헤더:TO DO/In Progress/Done
         headerColor = model.headerColor,
         bodyColor = model.bodyColor,
         borderColor = model.borderColor,
