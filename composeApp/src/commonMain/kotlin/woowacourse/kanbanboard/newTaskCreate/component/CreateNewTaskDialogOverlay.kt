@@ -32,12 +32,15 @@ fun CreateNewTaskDialogOverlay(
     }
 }
 
-@Preview(showBackground = true, widthDp = 1294, heightDp = 1500)
+@Preview(showBackground = true, widthDp = 1294, heightDp = 1000)
 @Composable
 private fun CreateNewTaskDialogOverlayPreivew() {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState()),
     ) {
-        CreateNewTaskDialogOverlay(onDismiss = {})
+        CreateNewTaskDialogOverlay(
+            onDismiss = {},
+            onCreateTask = {}
+        )
     }
 }

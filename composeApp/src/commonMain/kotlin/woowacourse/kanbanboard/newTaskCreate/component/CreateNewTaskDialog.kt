@@ -84,6 +84,9 @@ fun CreateNewTaskDialogPreview(
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState()),
     ) {
-        CreateNewTaskDialog(onDismiss = {})
+        CreateNewTaskDialog(
+            onDismiss = {},
+            onCreateTask = {}
+        )
     }
 }
