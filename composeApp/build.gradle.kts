@@ -49,7 +49,7 @@ kotlin {
 }
 
 android {
-    namespace = "woowacourse.kanban.board"
+    namespace = "woowacourse.kanbanboard.board"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
