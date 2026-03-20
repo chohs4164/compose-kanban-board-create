@@ -21,6 +21,7 @@ import woowacourse.kanbanboard.board.CustomColor
 import woowacourse.kanbanboard.board.data.KanbanBoardSampleData
 import woowacourse.kanbanboard.newTaskCreate.component.CreateNewTaskDialogOverlay
 import woowacourse.kanbanboard.newTaskCreate.data.Task
+import woowacourse.kanbanboard.newTaskCreate.data.TaskStatus
 
 @Composable
 fun KanbanBoard(
@@ -30,7 +31,10 @@ fun KanbanBoard(
 ) {
     // 새 태스크 생성 버튼을 눌렀을 때 상태를 변경하기 위함
     var isDialogOpen by remember { mutableStateOf(false) }
-    var taskListState = remember { mutableStateListOf<Task>()}
+    val todoTaskState = remember { mutableStateListOf<Task>().apply { addAll(todoTasks) } }
+    val inprogressState = remember { mutableStateListOf<Task>().apply { addAll(inProgressTasks) } }
+    val doneState = remember { mutableStateListOf<Task>().apply { addAll(doneTasks) } }
+
     Column(
         modifier = Modifier
             .size(1295.dp, 909.dp)
@@ -39,8 +43,8 @@ fun KanbanBoard(
     ) {
         // 헤더
         Header(
-            totalCount = todoTasks.size + inProgressTasks.size + doneTasks.size,
-            doneCount = doneTasks.size,
+            totalCount = todoTaskState.size + inprogressState.size + doneState.size,
+            doneCount = doneState.size,
             onClick = { isDialogOpen = true },
         )
         Row(
@@ -53,21 +57,21 @@ fun KanbanBoard(
                 headerColor = CustomColor.Blue600,
                 bodyColor = CustomColor.Blue50,
                 borderColor = CustomColor.Blue200,
-                tasks = todoTasks,
+                tasks = todoTaskState,
             )
             ProgressCard(
                 title = "In Progress",
                 headerColor = CustomColor.Orange700,
                 bodyColor = CustomColor.Yellow100,
                 borderColor = CustomColor.Yellow300,
-                tasks = inProgressTasks,
+                tasks = inprogressState,
             )
             ProgressCard(
                 title = "Done",
                 headerColor = CustomColor.Green700,
                 bodyColor = CustomColor.Green50,
                 borderColor = CustomColor.Green200,
-                tasks = doneTasks,
+                tasks = doneState,
             )
         }
     }
@@ -75,8 +79,12 @@ fun KanbanBoard(
         CreateNewTaskDialogOverlay(
             onDismiss = { isDialogOpen = false },
             onCreateTask = { task ->
-                taskListState.add(task)
-            }
+                when (task.status) {
+                    TaskStatus.TO_DO -> todoTaskState.add(task)
+                    TaskStatus.IN_PROGRESS -> inprogressState.add(task)
+                    TaskStatus.DONE -> doneState.add(task)
+                }
+            },
         )
     }
 }

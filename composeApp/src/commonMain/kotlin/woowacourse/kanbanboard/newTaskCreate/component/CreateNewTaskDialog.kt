@@ -9,16 +9,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanbanboard.newTaskCreate.data.Task
+import woowacourse.kanbanboard.newTaskCreate.data.TaskStatus
 import woowacourse.kanbanboard.newTaskCreate.uiState.rememberCreateTaskFormState
 
 @Composable
@@ -28,7 +25,6 @@ fun CreateNewTaskDialog(
 ) {
     val formState = rememberCreateTaskFormState()
 
-    var onCreate by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .size(672.dp, 818.dp)
@@ -64,10 +60,16 @@ fun CreateNewTaskDialog(
                         .split(",")
                         .map { it.trim() }
                         .filter { it.isNotEmpty() },
-                    nickname = when (formState.selectedStatusIndex){
+                    nickname = when (formState.selectedProfileIndex) {
                         0 -> "다이노"
                         1 -> "페임스"
                         else -> "다이노"
+                    },
+                    status = when (formState.selectedStatusIndex) {
+                        0 -> TaskStatus.TO_DO
+                        1 -> TaskStatus.IN_PROGRESS
+                        2 -> TaskStatus.DONE
+                        else -> TaskStatus.TO_DO
                     },
                 )
                 onCreateTask(task)
