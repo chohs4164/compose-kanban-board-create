@@ -1,4 +1,4 @@
-package woowacourse.kanban.board
+package woowacourse.kanbanboard.board
 
 import androidx.compose.ui.graphics.Color
 
@@ -13,8 +13,10 @@ object CustomColor {
     val Gray100 = Color(0xFFF3F4F6)
     val Gray200 = Color(0xFFE5E7EB)
     val Gray400 = Color(0xFFAAAAAA)
+    val Gray500 = Color(0xFF6A7282)
     val Gray600 = Color(0xFF4A5565)
     val Gray700 = Color(0xFF364153)
+    val Gray800 = Color(0xFF393939)
     val Gray900 = Color(0xFF101828)
     val Gray950 = Color(0xFF0A0A0A)
 
