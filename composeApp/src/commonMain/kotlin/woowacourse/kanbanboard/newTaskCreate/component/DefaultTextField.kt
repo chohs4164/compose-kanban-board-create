@@ -1,5 +1,6 @@
 package woowacourse.kanbanboard.newTaskCreate.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -41,7 +42,7 @@ fun DefaultTextField(
     defaultSupportingText: String?,
     validate: (inputValue: String) -> String?,
     minLines: Int,
-    maxLines: Int
+    maxLines: Int,
 ) {
     // 텍스트 필드에 값이 입력되어 있는지
     var isDirty by remember { mutableStateOf(false) }
@@ -50,7 +51,9 @@ fun DefaultTextField(
     val isError = (errorMessage != null)
 
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
+            .background(Color.White),
     ) {
         Text(
             text = titleText,
@@ -70,7 +73,7 @@ fun DefaultTextField(
                 ),
                 colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color.White,
-                    errorTextColor = CustomColor.Red700
+                    errorTextColor = CustomColor.Red700,
                 ),
                 placeholder = {
                     if (isError && isDirty) {
@@ -92,7 +95,7 @@ fun DefaultTextField(
                         Icon(
                             imageVector = Icons.Filled.Error,
                             contentDescription = "error_icon",
-                            tint = MaterialTheme.colorScheme.error
+                            tint = MaterialTheme.colorScheme.error,
                         )
                 },
                 keyboardActions = KeyboardActions { validate(value) },
@@ -111,7 +114,7 @@ fun DefaultTextField(
                 colors = TextFieldDefaults.colors(
                     unfocusedPlaceholderColor = CustomColor.Gray400,
                     unfocusedContainerColor = Color.White,
-                    errorTextColor = CustomColor.Red700
+                    errorTextColor = CustomColor.Red700,
                 ),
                 placeholder = { Text(hintText) },
                 onValueChange = {
@@ -127,7 +130,7 @@ fun DefaultTextField(
                         Icon(
                             imageVector = Icons.Filled.Error,
                             contentDescription = "error_icon",
-                            tint = MaterialTheme.colorScheme.error
+                            tint = MaterialTheme.colorScheme.error,
                         )
                 },
                 supportingText = {
@@ -153,22 +156,22 @@ private class DefaultTitleTextParameterProvider() : PreviewParameterProvider<Str
 
 data class TextFieldPreviewCase(
     val title: String,
-    val hint: String
+    val hint: String,
 )
 
 private class DefaultTextFieldPreviewPrvoider() : PreviewParameterProvider<TextFieldPreviewCase> {
     override val values = sequenceOf(
         TextFieldPreviewCase(
             "제목 * ",
-            "태스크 제목을 입력하세요"
+            "태스크 제목을 입력하세요",
         ),
         TextFieldPreviewCase(
             "설명",
-            "태크스에 대한 자세한 설명을 입력하세요"
+            "태크스에 대한 자세한 설명을 입력하세요",
         ),
         TextFieldPreviewCase(
             "태그",
-            "태그를 쉼표로 구분하여 입력하세요 (예: 버그, 긴급)"
+            "태그를 쉼표로 구분하여 입력하세요 (예: 버그, 긴급)",
         ),
     )
 }
@@ -176,7 +179,7 @@ private class DefaultTextFieldPreviewPrvoider() : PreviewParameterProvider<TextF
 @Preview
 @Composable
 private fun DefaultTextFieldPreview(
-    @PreviewParameter(DefaultTextFieldPreviewPrvoider::class) item: TextFieldPreviewCase
+    @PreviewParameter(DefaultTextFieldPreviewPrvoider::class) item: TextFieldPreviewCase,
 ) {
     DefaultTextField(
         modifier = Modifier.fillMaxWidth(),
@@ -188,7 +191,7 @@ private fun DefaultTextFieldPreview(
         defaultSupportingText = "",
         validate = {
             validateTitle(
-                it
+                it,
             )?.message()
         },
         minLines = 1,

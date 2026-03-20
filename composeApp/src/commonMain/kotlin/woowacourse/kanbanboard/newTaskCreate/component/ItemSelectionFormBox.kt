@@ -1,5 +1,6 @@
 package woowacourse.kanbanboard.newTaskCreate.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxScope
@@ -15,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -30,7 +32,8 @@ fun ItemSelectionFormBox(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(Color.White),
     ) {
         Text(text = text)
         Spacer(modifier = Modifier.height(8.dp))
@@ -76,6 +79,7 @@ private fun ItemSelectionFormBoxPreview() {
             onItemSelected = { },
             width = 200.dp,
             height = 68.dp,
-            { Text("Hello", modifier = Modifier.align(Alignment.Center)) })
+            { Text("Hello", modifier = Modifier.align(Alignment.Center)) },
+        )
     }
 }

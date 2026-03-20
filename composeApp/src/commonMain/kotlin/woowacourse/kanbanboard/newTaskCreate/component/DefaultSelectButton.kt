@@ -1,6 +1,7 @@
 package woowacourse.kanbanboard.newTaskCreate.component
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
@@ -30,7 +31,9 @@ fun DefaultSelectButton(
     OutlinedButton(
         onClick = onClick,
         shape = RoundedCornerShape(10.dp),
-        modifier = Modifier.size(width, height),
+        modifier = Modifier
+            .size(width, height)
+            .background(Color.White),
         colors = outlinedButtonColors(
             containerColor = if (isSelected) CustomColor.Blue50 else Color.Transparent,
             contentColor = if (isSelected) CustomColor.Blue700 else CustomColor.Gray700,
@@ -59,25 +62,29 @@ fun DefaultSelectButtonPreview() {
             width = 200.dp,
             height = 52.dp,
             onClick = {},
-            content = { Text("Hello", modifier = Modifier.align(Alignment.CenterStart)) })
+            content = { Text("Hello", modifier = Modifier.align(Alignment.CenterStart)) },
+        )
         DefaultSelectButton(
             isSelected = false,
             width = 200.dp,
             height = 52.dp,
             onClick = {},
-            content = { Text("조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘") })
+            content = { Text("조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘조디악사무엘") },
+        )
         DefaultSelectButton(
             isSelected = false,
             width = 200.dp,
             height = 52.dp,
             onClick = {},
-            content = { Text("To Do", modifier = Modifier.align(Alignment.Center)) })
+            content = { Text("To Do", modifier = Modifier.align(Alignment.Center)) },
+        )
         DefaultSelectButton(
             isSelected = false,
             width = 200.dp,
             height = 52.dp,
             onClick = {},
-            content = { Text("In Progress") })
+            content = { Text("In Progress") },
+        )
         DefaultSelectButton(
             isSelected = false,
             width = 200.dp,
@@ -86,8 +93,9 @@ fun DefaultSelectButtonPreview() {
             content = {
                 ProfileCard(
                     "조디악",
-                    Modifier.align(Alignment.CenterStart)
+                    Modifier.align(Alignment.CenterStart),
                 )
-            })
+            },
+        )
     }
 }
