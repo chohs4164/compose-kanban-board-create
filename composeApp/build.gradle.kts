@@ -77,11 +77,11 @@ ktlint {
 
 compose.desktop {
     application {
-        mainClass = "woowacourse.kanban.board.MainKt"
+        mainClass = "woowacourse.kanbanboard.board.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "woowacourse.kanban.board"
+            packageName = "woowacourse.kanbanboard.board"
             packageVersion = "1.0.0"
         }
     }

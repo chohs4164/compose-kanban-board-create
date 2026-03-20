@@ -1,4 +1,4 @@
-package woowacourse.kanban.board
+package woowacourse.kanbanboard.board
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Checkbox
@@ -9,14 +9,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import woowacourse.kanban.board.component.TaskBackground
-import woowacourse.kanban.board.component.newTaskCreate.CreateNewTaskDialog
-import woowacourse.kanban.board.data.Task
+import woowacourse.kanbanboard.board.component.KanbanBoard
+import woowacourse.kanbanboard.board.data.KanbanBoardSampleData
+import woowacourse.kanbanboard.newTaskCreate.data.Task
+import woowacourse.kanbanboard.ui.TaskUIMapper
 
 @Composable
 @Preview(showBackground = true)
 fun App() {
-    CreateNewTaskDialog()
+    KanbanBoard(
+        todoTasks = KanbanBoardSampleData.todoTasks,
+        inProgressTasks = KanbanBoardSampleData.inProgressTasks,
+        doneTasks = KanbanBoardSampleData.doneTasks,
+    )
 }
 
 @Composable
@@ -51,7 +56,7 @@ fun MainScreen() {
     )
 
     // Task UI를 생성하는 로직을 Background에 람다로 전달했지만, 더 좋은 방법은 없을까? 람다까지 해야할까?
-    TaskBackground { TaskUIMapper().createTaskUI(tasks) }
+    woowacourse.kanbanboard.newTaskCreate.component.TaskBackground { TaskUIMapper().createTaskUI(tasks) }
 }
 
 @Composable

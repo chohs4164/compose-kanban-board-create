@@ -1,4 +1,4 @@
-package woowacourse.kanban.board
+package woowacourse.kanbanboard.board
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
