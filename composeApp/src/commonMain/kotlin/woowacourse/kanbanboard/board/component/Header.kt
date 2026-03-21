@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -75,6 +76,7 @@ fun Header(
                 textColor = Color.White,
                 backgroundColor = CustomColor.Violet600,
                 enabled = true,
+                modifier = Modifier.testTag("open_create_task_button"),
                 onClick = onClick,
             )
         }

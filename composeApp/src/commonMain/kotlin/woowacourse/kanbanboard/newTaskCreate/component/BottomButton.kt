@@ -20,13 +20,14 @@ fun BottomButton(
     textColor: Color,
     backgroundColor: Color,
     enabled: Boolean,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
     Button(
         onClick = { onClick() },
         shape = RoundedCornerShape(10.dp),
         enabled = enabled,
-        modifier = Modifier,
+        modifier = modifier,
         colors = buttonColors(
             containerColor = backgroundColor,
             contentColor = textColor,
