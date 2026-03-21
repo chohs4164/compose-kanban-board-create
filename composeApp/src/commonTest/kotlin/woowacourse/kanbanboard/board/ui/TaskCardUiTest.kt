@@ -1,4 +1,4 @@
-package woowacourse.kanbanboard.board.ui.component
+package woowacourse.kanbanboard.board.ui
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertCountEquals

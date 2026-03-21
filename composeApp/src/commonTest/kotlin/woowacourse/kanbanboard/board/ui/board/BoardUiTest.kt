@@ -1,4 +1,4 @@
-package woowacourse.kanbanboard.board.ui.component.board
+package woowacourse.kanbanboard.board.ui.board
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runComposeUiTest

@@ -1,4 +1,4 @@
-package woowacourse.kanbanboard.board.ui.component.newTaskCreate
+package woowacourse.kanbanboard.board.ui.newTaskCreate
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

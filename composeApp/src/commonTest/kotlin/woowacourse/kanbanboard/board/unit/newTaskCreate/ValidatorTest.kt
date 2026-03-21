@@ -1,4 +1,4 @@
-package woowacourse.kanbanboard.board.unit.component.newTaskCreate
+package woowacourse.kanbanboard.board.unit.newTaskCreate
 
 import org.junit.Test
 import woowacourse.kanbanboard.newTaskCreate.component.NewTaskFormError
