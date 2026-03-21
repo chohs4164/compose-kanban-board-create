@@ -1,31 +1,71 @@
 package woowacourse.kanbanboard.board.ui.board
 
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
+import woowacourse.kanbanboard.board.component.KanbanBoard
+import woowacourse.kanbanboard.board.data.KanbanBoardSampleData
 
+@OptIn(ExperimentalTestApi::class)
 class BoardUiTest {
-
-    @OptIn(ExperimentalTestApi::class)
     @Test
-    fun `새 태스크 생성 버튼을 누르면 새 태스크 생성 Dialog 화면이 뜬다`() = runComposeUiTest {
+    fun `초기 렌더링 시 헤더 제목과 완료율이 표시된다`() = runComposeUiTest {
+        setContent {
+            KanbanBoard(
+                todoTasks = KanbanBoardSampleData.todoTasks,
+                inProgressTasks = KanbanBoardSampleData.inProgressTasks,
+                doneTasks = KanbanBoardSampleData.doneTasks,
+            )
+        }
+
+        onNodeWithText("Compose Desk 칸반 보드").assertExists()
+        onNodeWithText("완료율: 50% (3/6)").assertExists()
+        onNodeWithTag("open_create_task_button").assertExists()
     }
 
-    @OptIn(ExperimentalTestApi::class)
     @Test
-    fun `새 태스크를 생성함에 따라 완료율의 숫자가 변경되고 Progress Indicator의 비율도 변경된다`() = runComposeUiTest {
+    fun `초기 렌더링 시 세 개의 진행 상태 컬럼이 표시된다`() = runComposeUiTest {
+        setContent {
+            KanbanBoard(
+                todoTasks = KanbanBoardSampleData.todoTasks,
+                inProgressTasks = KanbanBoardSampleData.inProgressTasks,
+                doneTasks = KanbanBoardSampleData.doneTasks,
+            )
+        }
+
+        onNodeWithText("To Do").assertExists()
+        onNodeWithText("In Progress").assertExists()
+        onNodeWithText("Done").assertExists()
     }
 
-    @OptIn(ExperimentalTestApi::class)
     @Test
-    fun `새 태스크를 생성함에 따라 To Do 쪽 칸반 보드에 taskCard가 추가되고 숫자가 늘어난다`() = runComposeUiTest {
+    fun `할 일 컬럼의 샘플 태스크가 표시된다`() = runComposeUiTest {
+        setContent {
+            KanbanBoard(
+                todoTasks = KanbanBoardSampleData.todoTasks,
+                inProgressTasks = KanbanBoardSampleData.inProgressTasks,
+                doneTasks = KanbanBoardSampleData.doneTasks,
+            )
+        }
 
+        onNodeWithText("LazyColumn 컴포넌트 구현").assertExists()
+        onNodeWithText("Side-effect API 학습").assertExists()
     }
-    
-    @OptIn(ExperimentalTestApi::class)
+
     @Test
-    fun `새 태스크 생성함에 따라 SnackBar가 뜬다`() = runComposeUiTest {
+    fun `완료 컬럼의 샘플 태스크가 표시된다`() = runComposeUiTest {
+        setContent {
+            KanbanBoard(
+                todoTasks = KanbanBoardSampleData.todoTasks,
+                inProgressTasks = KanbanBoardSampleData.inProgressTasks,
+                doneTasks = KanbanBoardSampleData.doneTasks,
+            )
+        }
 
+        onNodeWithText("리컴포지션 최적화").assertExists()
+        onNodeWithText("Mock API 설정").assertExists()
+        onNodeWithText("Drag & Drop 기능 구현").assertExists()
     }
-
 }
