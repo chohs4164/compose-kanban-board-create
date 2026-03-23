@@ -45,7 +45,7 @@ fun KanbanBoard(
     tasks: List<Task>,
 ) {
     // 새 태스크 생성 버튼을 눌렀을 때 상태를 변경하기 위함
-    var isDialogOpen by remember { mutableStateOf(false) }
+    var openDialog by remember { mutableStateOf(false) }
 
     val taskState = remember { mutableStateListOf<Task>().apply { addAll(tasks) } }
 
@@ -66,7 +66,7 @@ fun KanbanBoard(
             Header(
                 totalCount = tasks.size,
                 doneCount = tasks.count { it.status == TaskStatus.DONE },
-                onClick = { isDialogOpen = true },
+                onClick = { openDialog = true },
             )
             Row(
                 modifier = Modifier.padding(top = 24.dp, start = 24.dp, bottom = 24.dp),
@@ -125,9 +125,9 @@ fun KanbanBoard(
                 }
             }
         }
-        if (isDialogOpen) {
+        if (openDialog) {
             CreateNewTaskDialogOverlay(
-                onDismiss = { isDialogOpen = false },
+                onDismiss = { openDialog = false },
                 onCreateTask = { task ->
                     taskState.add(task)
                     scope.launch {
