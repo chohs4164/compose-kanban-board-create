@@ -17,20 +17,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.newTaskCreate.data.Assignee
+import woowacourse.kanban.newTaskCreate.data.TaskStatus
 
 @Composable
 fun NewTaskForm(
-    title: String,
-    onTitleChange: (String) -> Unit,
-    description: String,
-    onDescriptionChange: (String) -> Unit,
-    tags: String,
-    onTagsChange: (String) -> Unit,
-    selectedStatusIndex: Int,
-    onStatusChange: (Int) -> Unit,
-    selectedProfileIndex: Int,
-    onProfileChange: (Int) -> Unit,
+    title: String, // 제목
+    onTitleChange: (String) -> Unit, // 재목의 textfield의 내용이 바뀔 경우
+    description: String, // 설명
+    onDescriptionChange: (String) -> Unit, // 설명의 textfield의 내용이 바뀔 경우
+    tags: String, // , 로 이어진 태그 묶음들
+    onTagsChange: (String) -> Unit, // 태그 textfield의 내용이 바뀔 경우
+    selectedStatus: TaskStatus, // 선택한 상태 값(TO_DO, IN_PROGRESS, DONE)
+    onStatusChange: (TaskStatus) -> Unit, // 선택한 상태가 변할 경우
+    assignees: List<Assignee>,
+    selectedAssigneeId: String, // 선택한 담당자 값(선택된 고유 담당자 번호)
+    onAssignChange: (String) -> Unit, // 선택한 담당자 값이 변할 경우
 ) {
+    val selectedAssignee = assignees.firstOrNull { it.id == selectedAssigneeId }
+
     Column(
         modifier = Modifier
             .size(672.dp, 654.dp)
@@ -49,11 +54,11 @@ fun NewTaskForm(
             defaultSupportingText = null,
             validate = {
                 validateTitle(
-                    it
+                    it,
                 )?.message()
             },
             minLines = 1,
-            maxLines = 1
+            maxLines = 1,
         )
         DefaultTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -65,7 +70,7 @@ fun NewTaskForm(
             defaultSupportingText = null,
             validate = {
                 validateDescription(
-                    it
+                    it,
                 )
             },
             minLines = 4,
@@ -81,51 +86,60 @@ fun NewTaskForm(
             defaultSupportingText = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.",
             validate = {
                 validateTags(
-                    it
+                    it,
                 )?.message()
             },
             minLines = 1,
-            maxLines = 1
+            maxLines = 1,
         )
         ItemSelectionFormBox(
             text = "상태 *",
-            selectedItemIndex = selectedStatusIndex,
+            items = TaskStatus.entries,
+            selectedItem = selectedStatus,
             onItemSelected = onStatusChange,
             width = 200.dp,
             height = 52.dp,
-            { Text("To Do", modifier = Modifier.align(Alignment.Center)) },
-            { Text("In Progress", modifier = Modifier.align(Alignment.Center)) },
-            { Text("Done", modifier = Modifier.align(Alignment.Center)) },
-        )
-        ItemSelectionFormBox(
-            text = "담당자 *", selectedProfileIndex,
-            onItemSelected = onProfileChange,
-            width = 200.dp,
-            height = 68.dp,
-            {
-                ProfileCard(
-                    "다이노",
-                    modifier = Modifier.align(Alignment.CenterStart)
-                )
-            },
-            {
-                ProfileCard(
-                    "페임스",
-                    modifier = Modifier.align(Alignment.CenterStart)
+            itemContent = { status ->
+                Text(
+                    text = when (status) {
+                        TaskStatus.TO_DO -> "To Do"
+                        TaskStatus.IN_PROGRESS -> "In Progress"
+                        TaskStatus.DONE -> "Done"
+                    },
                 )
             },
         )
+        if (selectedAssignee != null) {
+            ItemSelectionFormBox(
+                text = "담당자 *",
+                items = assignees,
+                selectedItem = selectedAssignee,
+                onItemSelected = { onAssignChange(it.id) },
+                width = 200.dp,
+                height = 68.dp,
+                itemContent = { assignee ->
+                    ProfileCard(
+                        nickname = assignee.nickname,
+                        modifier = Modifier.align(Alignment.CenterStart),
+                    )
+                },
+            )
+        }
     }
 }
 
 @Preview(widthDp = 672, heightDp = 818)
 @Composable
 private fun NewTaskFormPreview() {
+    val assignees = listOf(
+        Assignee(id = "dino", nickname = "다이노"),
+        Assignee(id = "fames", nickname = "페임스"),
+    )
     var title by remember { mutableStateOf("태스크 제목을 입력하세요") }
     var description by remember { mutableStateOf("태스크에 대한 자세한 설명을 입력하세요") }
     var tags by remember { mutableStateOf("태그를 쉼표로 구분하여 입력하세요 (예: 버그,긴급)") }
-    var selectedStatusIndex by remember { mutableStateOf(0) }
-    var selectedProfileIndex by remember { mutableStateOf(0) }
+    var selectedStatus by remember { mutableStateOf(TaskStatus.TO_DO) }
+    var selectedAssigneeId by remember { mutableStateOf(assignees.first().id) }
 
     NewTaskForm(
         title = title,
@@ -134,9 +148,10 @@ private fun NewTaskFormPreview() {
         onDescriptionChange = { description = it },
         tags = tags,
         onTagsChange = { tags = it },
-        selectedStatusIndex = selectedStatusIndex,
-        onStatusChange = { selectedStatusIndex = it },
-        selectedProfileIndex = selectedProfileIndex,
-        onProfileChange = { selectedProfileIndex = it },
+        selectedStatus = selectedStatus,
+        onStatusChange = { selectedStatus = it },
+        assignees = assignees,
+        selectedAssigneeId = selectedAssigneeId,
+        onAssignChange = { selectedAssigneeId = it },
     )
 }

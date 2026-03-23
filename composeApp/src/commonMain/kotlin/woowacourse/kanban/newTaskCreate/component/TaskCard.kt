@@ -48,13 +48,12 @@ fun TaskCard(
                 tags,
                 tagsModifier = Modifier.fillMaxWidth().testTag("tags_area")
             )
-            // 해당 부분에 로직이 들어가는게 맞을까?
             HorizontalDivider(
                 thickness = 1.dp,
                 color = CustomColor.Gray100,
             )
             ProfileCard(
-                nickname,
+                nickname = nickname,
                 modifier = Modifier
             )
         }

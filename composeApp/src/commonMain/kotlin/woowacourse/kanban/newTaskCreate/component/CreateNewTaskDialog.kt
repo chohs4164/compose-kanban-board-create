@@ -14,17 +14,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.newTaskCreate.data.Assignee
 import woowacourse.kanban.newTaskCreate.data.Task
-import woowacourse.kanban.newTaskCreate.data.TaskStatus
 import woowacourse.kanban.newTaskCreate.uiState.rememberCreateTaskFormState
 
 @Composable
 fun CreateNewTaskDialog(
+    assignees: List<Assignee>,
     onDismiss: () -> Unit,
     onCreateTask: (Task) -> Unit,
 ) {
     val formState = rememberCreateTaskFormState()
-
     Column(
         modifier = Modifier
             .size(672.dp, 818.dp)
@@ -43,10 +43,11 @@ fun CreateNewTaskDialog(
             onDescriptionChange = { formState.description = it },
             tags = formState.tags,
             onTagsChange = { formState.tags = it },
-            selectedStatusIndex = formState.selectedStatusIndex,
-            onStatusChange = { formState.selectedStatusIndex = it },
-            selectedProfileIndex = formState.selectedProfileIndex,
-            onProfileChange = { formState.selectedProfileIndex = it },
+            selectedStatus = formState.selectedStatus,
+            onStatusChange = { formState.selectedStatus = it },
+            assignees = assignees,
+            selectedAssigneeId = formState.selectedAssigneeId,
+            onAssignChange = { formState.selectedAssigneeId = it },
         )
         HorizontalDivider(Modifier.padding(24.dp))
         // 하단부
@@ -60,17 +61,8 @@ fun CreateNewTaskDialog(
                         .split(",")
                         .map { it.trim() }
                         .filter { it.isNotEmpty() },
-                    nickname = when (formState.selectedProfileIndex) {
-                        0 -> "다이노"
-                        1 -> "페임스"
-                        else -> "다이노"
-                    },
-                    status = when (formState.selectedStatusIndex) {
-                        0 -> TaskStatus.TO_DO
-                        1 -> TaskStatus.IN_PROGRESS
-                        2 -> TaskStatus.DONE
-                        else -> TaskStatus.TO_DO
-                    },
+                    assigneeId = formState.selectedAssigneeId,
+                    status = formState.selectedStatus,
                 )
                 onCreateTask(task)
                 onDismiss()
@@ -83,12 +75,17 @@ fun CreateNewTaskDialog(
 @Composable
 fun CreateNewTaskDialogPreview(
 ) {
+    val assignees = listOf(
+        Assignee(id = "dino", nickname = "다이노"),
+        Assignee(id = "fames", nickname = "페임스"),
+    )
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState()),
     ) {
         CreateNewTaskDialog(
+            assignees = assignees,
             onDismiss = {},
-            onCreateTask = {}
+            onCreateTask = {},
         )
     }
 }

@@ -26,8 +26,8 @@ class NewTaskFormUiTest {
                 onTagsChange = {},
                 selectedStatusIndex = selectedStatusIndex,
                 onStatusChange = { selectedStatusIndex = it },
-                selectedProfileIndex = 0,
-                onProfileChange = {},
+                selectedAssigneeId = 0,
+                onAssignChange = {},
             )
         }
 
@@ -53,8 +53,8 @@ class NewTaskFormUiTest {
                 onTagsChange = {},
                 selectedStatusIndex = 0,
                 onStatusChange = {},
-                selectedProfileIndex = selectedProfileIndex,
-                onProfileChange = { selectedProfileIndex = it },
+                selectedAssigneeId = selectedProfileIndex,
+                onAssignChange = { selectedProfileIndex = it },
             )
         }
 

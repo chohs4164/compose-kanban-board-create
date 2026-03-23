@@ -14,8 +14,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -48,6 +48,9 @@ fun KanbanBoard(
     var openDialog by remember { mutableStateOf(false) }
 
     val taskState = remember { mutableStateListOf<Task>().apply { addAll(tasks) } }
+    val assigneeById = remember {
+        KanbanBoardSampleData.assignees.associate { it.id to it.nickname }
+    }
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -79,6 +82,7 @@ fun KanbanBoard(
                     bodyColor = CustomColor.Blue50,
                     borderColor = CustomColor.Blue200,
                     tasks = taskState.filter { it.status == TaskStatus.TO_DO },
+                    assigneeById = assigneeById,
                 )
                 ProgressCard(
                     title = "In Progress",
@@ -86,6 +90,7 @@ fun KanbanBoard(
                     bodyColor = CustomColor.Yellow100,
                     borderColor = CustomColor.Yellow300,
                     tasks = taskState.filter { it.status == TaskStatus.IN_PROGRESS },
+                    assigneeById = assigneeById,
                 )
                 ProgressCard(
                     title = "Done",
@@ -93,6 +98,7 @@ fun KanbanBoard(
                     bodyColor = CustomColor.Green50,
                     borderColor = CustomColor.Green200,
                     tasks = taskState.filter { it.status == TaskStatus.DONE },
+                    assigneeById = assigneeById,
                 )
             }
         }
@@ -127,6 +133,7 @@ fun KanbanBoard(
         }
         if (openDialog) {
             CreateNewTaskDialogOverlay(
+                assignees = KanbanBoardSampleData.assignees,
                 onDismiss = { openDialog = false },
                 onCreateTask = { task ->
                     taskState.add(task)

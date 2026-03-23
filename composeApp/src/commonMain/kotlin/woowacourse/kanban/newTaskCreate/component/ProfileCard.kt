@@ -19,6 +19,7 @@ import kanbanboard.composeapp.generated.resources.Res
 import kanbanboard.composeapp.generated.resources.profile
 import org.jetbrains.compose.resources.painterResource
 import woowacourse.kanban.board.CustomColor
+import woowacourse.kanban.newTaskCreate.data.Assignee
 
 @Composable
 fun ProfileCard(nickname: String, modifier: Modifier = Modifier) {

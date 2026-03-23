@@ -28,6 +28,6 @@ fun TaskBackground(generateTask: @Composable () -> Unit) {
 @Composable
 @Preview
 fun TaskBackgroundPreview() {
-    val data = listOf(Task("조디악", nickname = "조디악"))
+    val data = listOf(Task(taskTitle = "조디악", assigneeId = "dino"))
     TaskBackground { TaskUIMapper().createTaskUI(data) }
 }

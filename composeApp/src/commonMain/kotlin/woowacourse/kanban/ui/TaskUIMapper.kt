@@ -8,7 +8,7 @@ class TaskUIMapper {
     @Composable
     fun createTaskUI(tasks: List<Task>) {
         tasks.forEach { task ->
-            TaskCard(task.taskTitle, task.taskScript, task.tags, task.nickname)
+            TaskCard(task.taskTitle, task.taskScript, task.tags, task.assigneeId)
         }
     }
 }

@@ -34,6 +34,7 @@ fun ProgressCard(
     borderColor: Color,
     bodyColor: Color,
     tasks: List<Task>,
+    assigneeById: Map<String, String>,
 ) {
     // 전체 박스
     Column(
@@ -83,11 +84,12 @@ fun ProgressCard(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             tasks.forEach { task ->
+                val nickname = assigneeById[task.assigneeId] ?: "알 수 없음"
                 TaskCard(
                     title = task.taskTitle,
                     script = task.taskScript,
                     tags = task.tags,
-                    nickname = task.nickname,
+                    nickname = nickname,
                 )
             }
         }
@@ -141,5 +143,6 @@ private fun ProgressCardPreview(
         bodyColor = model.bodyColor,
         borderColor = model.borderColor,
         tasks = model.tasks,
+        assigneeById = KanbanBoardSampleData.assignees.associate { it.id to it.nickname },
     )
 }
