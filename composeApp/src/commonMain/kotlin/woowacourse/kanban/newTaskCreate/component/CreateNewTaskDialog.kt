@@ -24,7 +24,7 @@ fun CreateNewTaskDialog(
     onDismiss: () -> Unit,
     onCreateTask: (Task) -> Unit,
 ) {
-    val formState = rememberCreateTaskFormState()
+    val formState = rememberCreateTaskFormState(assignees)
     Column(
         modifier = Modifier
             .size(672.dp, 818.dp)

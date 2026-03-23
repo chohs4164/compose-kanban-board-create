@@ -67,8 +67,8 @@ fun KanbanBoard(
         ) {
             // 헤더
             Header(
-                totalCount = tasks.size,
-                doneCount = tasks.count { it.status == TaskStatus.DONE },
+                totalCount = taskState.size,
+                doneCount = taskState.count { it.status == TaskStatus.DONE },
                 onClick = { openDialog = true },
             )
             Row(

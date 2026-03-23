@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.data.KanbanBoardSampleData
 import woowacourse.kanban.newTaskCreate.data.Task
 import woowacourse.kanban.ui.TaskUIMapper
 
@@ -29,5 +30,6 @@ fun TaskBackground(generateTask: @Composable () -> Unit) {
 @Preview
 fun TaskBackgroundPreview() {
     val data = listOf(Task(taskTitle = "조디악", assigneeId = "dino"))
-    TaskBackground { TaskUIMapper().createTaskUI(data) }
+    val assigneeById = KanbanBoardSampleData.assignees.associate { it.id to it.nickname }
+    TaskBackground { TaskUIMapper().createTaskUI(data, assigneeById) }
 }

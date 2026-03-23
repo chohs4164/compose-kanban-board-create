@@ -6,9 +6,17 @@ import woowacourse.kanban.newTaskCreate.data.Task
 
 class TaskUIMapper {
     @Composable
-    fun createTaskUI(tasks: List<Task>) {
+    fun createTaskUI(
+        tasks: List<Task>,
+        assigneeById: Map<String, String> = emptyMap(),
+    ) {
         tasks.forEach { task ->
-            TaskCard(task.taskTitle, task.taskScript, task.tags, task.assigneeId)
+            TaskCard(
+                title = task.taskTitle,
+                script = task.taskScript,
+                tags = task.tags,
+                nickname = assigneeById[task.assigneeId] ?: task.assigneeId,
+            )
         }
     }
 }
