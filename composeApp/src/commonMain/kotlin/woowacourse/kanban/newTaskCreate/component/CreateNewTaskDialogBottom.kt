@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.CustomColor
@@ -31,6 +32,7 @@ fun CreateNewTaskDialogBottom(
             textColor = Color.Black,
             backgroundColor = Color.White,
             enabled = true,
+            modifier = Modifier.testTag("cancel_create_task_button"),
             onClick = { },
         )
         Spacer(modifier = Modifier.width(12.dp))
@@ -39,6 +41,7 @@ fun CreateNewTaskDialogBottom(
             textColor = Color.White,
             backgroundColor = CustomColor.Violet600,
             enabled = isCreateEnabled,
+            modifier = Modifier.testTag("create_task_button"),
             onClick = onCreate,
         )
     }

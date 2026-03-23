@@ -25,13 +25,14 @@ fun DefaultSelectButton(
     isSelected: Boolean,
     width: Dp,
     height: Dp,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
     content: @Composable BoxScope.() -> Unit,
 ) {
     OutlinedButton(
         onClick = onClick,
         shape = RoundedCornerShape(10.dp),
-        modifier = Modifier
+        modifier = modifier
             .size(width, height)
             .background(Color.White),
         colors = outlinedButtonColors(

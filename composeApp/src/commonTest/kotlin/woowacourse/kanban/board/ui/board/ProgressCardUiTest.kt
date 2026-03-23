@@ -15,8 +15,12 @@ class ProgressCardUiTest {
     @Test
     fun `제목과 태스크 목록이 주어지면 헤더와 카드가 모두 렌더링된다`() = runComposeUiTest {
         val tasks = listOf(
-            Task(taskTitle = "카드 A", taskScript = "설명 A", tags = listOf("태그1"), nickname = "다이노"),
-            Task(taskTitle = "카드 B", taskScript = "설명 B", tags = listOf("태그2"), nickname = "페임스"),
+            Task(taskTitle = "카드 A", taskScript = "설명 A", tags = listOf("태그1"), assigneeId = "dino"),
+            Task(taskTitle = "카드 B", taskScript = "설명 B", tags = listOf("태그2"), assigneeId = "fames"),
+        )
+        val assigneeById = mapOf(
+            "dino" to "다이노",
+            "fames" to "페임스",
         )
 
         setContent {
@@ -26,6 +30,7 @@ class ProgressCardUiTest {
                 borderColor = Color.Cyan,
                 bodyColor = Color.White,
                 tasks = tasks,
+                assigneeById = assigneeById,
             )
         }
 
@@ -46,6 +51,7 @@ class ProgressCardUiTest {
                 borderColor = Color.Gray,
                 bodyColor = Color.White,
                 tasks = emptyList(),
+                assigneeById = emptyMap(),
             )
         }
 

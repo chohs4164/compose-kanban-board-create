@@ -83,6 +83,7 @@ fun KanbanBoard(
                     borderColor = CustomColor.Blue200,
                     tasks = taskState.filter { it.status == TaskStatus.TO_DO },
                     assigneeById = assigneeById,
+                    countTag = "todo_count_badge",
                 )
                 ProgressCard(
                     title = "In Progress",
@@ -91,6 +92,7 @@ fun KanbanBoard(
                     borderColor = CustomColor.Yellow300,
                     tasks = taskState.filter { it.status == TaskStatus.IN_PROGRESS },
                     assigneeById = assigneeById,
+                    countTag = "in_progress_count_badge",
                 )
                 ProgressCard(
                     title = "Done",
@@ -99,6 +101,7 @@ fun KanbanBoard(
                     borderColor = CustomColor.Green200,
                     tasks = taskState.filter { it.status == TaskStatus.DONE },
                     assigneeById = assigneeById,
+                    countTag = "done_count_badge",
                 )
             }
         }

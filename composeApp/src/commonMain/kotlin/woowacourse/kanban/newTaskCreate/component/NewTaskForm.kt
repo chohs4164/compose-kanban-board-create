@@ -99,6 +99,13 @@ fun NewTaskForm(
             onItemSelected = onStatusChange,
             width = 200.dp,
             height = 52.dp,
+            itemTestTag = { status ->
+                when (status) {
+                    TaskStatus.TO_DO -> "status_option_todo"
+                    TaskStatus.IN_PROGRESS -> "status_option_in_progress"
+                    TaskStatus.DONE -> "status_option_done"
+                }
+            },
             itemContent = { status ->
                 Text(
                     text = when (status) {
@@ -117,6 +124,7 @@ fun NewTaskForm(
                 onItemSelected = { onAssignChange(it.id) },
                 width = 200.dp,
                 height = 68.dp,
+                itemTestTag = { assignee -> "assignee_option_${assignee.id}" },
                 itemContent = { assignee ->
                     ProfileCard(
                         nickname = assignee.nickname,

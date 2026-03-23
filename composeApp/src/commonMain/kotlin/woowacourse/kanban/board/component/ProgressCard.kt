@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -35,6 +36,7 @@ fun ProgressCard(
     bodyColor: Color,
     tasks: List<Task>,
     assigneeById: Map<String, String>,
+    countTag: String = "progress_card_count",
 ) {
     // 전체 박스
     Column(
@@ -72,6 +74,7 @@ fun ProgressCard(
                     color = Color.Black,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
+                    modifier = Modifier.testTag(countTag),
                 )
             }
         }

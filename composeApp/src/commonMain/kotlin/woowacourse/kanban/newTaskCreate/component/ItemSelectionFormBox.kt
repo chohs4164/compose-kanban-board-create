@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -28,6 +29,7 @@ fun <T> ItemSelectionFormBox(
     onItemSelected: (T) -> Unit,
     width: Dp,
     height: Dp,
+    itemTestTag: ((T) -> String)? = null,
     itemContent: @Composable BoxScope.(T) -> Unit,
 ) {
     Column {
@@ -38,10 +40,12 @@ fun <T> ItemSelectionFormBox(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             items.forEach { item ->
+                val buttonModifier = itemTestTag?.let { Modifier.testTag(it(item)) } ?: Modifier
                 DefaultSelectButton(
                     isSelected = (selectedItem == item),
                     width = width,
                     height = height,
+                    modifier = buttonModifier,
                     onClick = { onItemSelected(item) },
                 ) {
                     itemContent(item)

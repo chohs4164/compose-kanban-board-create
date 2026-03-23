@@ -1,5 +1,6 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.gradle.api.tasks.testing.Test
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -58,6 +59,16 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
+    }
+}
+
+tasks.withType<Test>().configureEach {
+    if (name.endsWith("UnitTest")) {
+        // commonTest의 Compose UI 테스트는 JVM(jvmTest)에서 검증한다.
+        filter {
+            excludeTestsMatching("woowacourse.kanban.board.ui.*")
+            excludeTestsMatching("woowacourse.kanban.board.study.*")
+        }
     }
 }
 

@@ -69,6 +69,7 @@ fun Header(
                     color = CustomColor.Gray500,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
+                    modifier = Modifier.testTag("completion_rate_text"),
                 )
             }
             BottomButton(
