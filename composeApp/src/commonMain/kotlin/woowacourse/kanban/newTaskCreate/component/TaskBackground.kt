@@ -1,4 +1,4 @@
-package woowacourse.kanban.newTaskCreate.component
+package woowacourse.kanban.board.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.FlowRow
@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.ui.TaskUIMapper
 import woowacourse.kanban.newTaskCreate.data.Task
+import woowacourse.kanban.ui.TaskUIMapper
 
 @Composable
 fun TaskBackground(generateTask: @Composable () -> Unit) {
@@ -29,9 +29,5 @@ fun TaskBackground(generateTask: @Composable () -> Unit) {
 @Preview
 fun TaskBackgroundPreview() {
     val data = listOf(Task("조디악", nickname = "조디악"))
-    _root_ide_package_.woowacourse.kanbanboard.newTaskCreate.component.TaskBackground {
-        TaskUIMapper().createTaskUI(
-            data
-        )
-    }
+    TaskBackground { TaskUIMapper().createTaskUI(data) }
 }

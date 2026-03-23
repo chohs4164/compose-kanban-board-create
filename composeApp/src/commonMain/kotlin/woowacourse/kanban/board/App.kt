@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import woowacourse.kanban.board.component.KanbanBoard
+import woowacourse.kanban.board.component.TaskBackground
 import woowacourse.kanban.board.data.KanbanBoardSampleData
 import woowacourse.kanban.newTaskCreate.data.Task
 import woowacourse.kanban.ui.TaskUIMapper
@@ -56,7 +57,7 @@ fun MainScreen() {
     )
 
     // Task UI를 생성하는 로직을 Background에 람다로 전달했지만, 더 좋은 방법은 없을까? 람다까지 해야할까?
-    woowacourse.kanban.newTaskCreate.component.TaskBackground { TaskUIMapper().createTaskUI(tasks) }
+    TaskBackground { TaskUIMapper().createTaskUI(tasks) }
 }
 
 @Composable
