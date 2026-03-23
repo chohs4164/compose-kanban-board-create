@@ -65,6 +65,7 @@ fun CreateNewTaskDialog(
                     status = formState.selectedStatus,
                 )
                 onCreateTask(task)
+                // 내부 검증만 통과하면 생성-다이얼로그 닫기가 묶여서 돌아가므로 실패할 경우도 고려해보라고 피드백 주심
                 onDismiss()
             }, // 클릭하면 taskCard가 만들어지도록
         )

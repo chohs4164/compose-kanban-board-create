@@ -140,6 +140,8 @@ fun KanbanBoard(
                     scope.launch {
                         snackbarHostState.showSnackbar(
                             message = "새로운 태스크가 추가되었습니다.",
+                            // 현재는 Snackbar가 닫기 전까지 계속 남아있고
+                            // 그 사이 새 태스크를 또 만들었을 때 다음 메시지가 대기 상태가 될 수 있다.
                             duration = SnackbarDuration.Indefinite,
                         )
                     }
