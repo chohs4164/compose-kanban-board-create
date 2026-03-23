@@ -25,6 +25,7 @@ import woowacourse.kanban.board.CustomColor
 import woowacourse.kanban.board.data.KanbanBoardSampleData
 import woowacourse.kanban.newTaskCreate.component.TaskCard
 import woowacourse.kanban.newTaskCreate.data.Task
+import woowacourse.kanban.newTaskCreate.data.TaskStatus
 
 @Composable
 fun ProgressCard(
@@ -108,21 +109,21 @@ class ProgressCardPreviewProvider : PreviewParameterProvider<ProgressCardPreview
             headerColor = CustomColor.Blue600,
             bodyColor = CustomColor.Blue50,
             borderColor = CustomColor.Blue200,
-            tasks = KanbanBoardSampleData.todoTasks,
+            tasks = KanbanBoardSampleData.Tasks.filter { it.status == TaskStatus.TO_DO },
         ),
         ProgressCardPreviewModel(
             title = "In Progress",
             headerColor = CustomColor.Orange700,
             bodyColor = CustomColor.Yellow100,
             borderColor = CustomColor.Yellow300,
-            tasks = KanbanBoardSampleData.inProgressTasks,
+            tasks = KanbanBoardSampleData.Tasks.filter { it.status == TaskStatus.IN_PROGRESS },
         ),
         ProgressCardPreviewModel(
             title = "Done",
             headerColor = CustomColor.Green700,
             bodyColor = CustomColor.Green50,
             borderColor = CustomColor.Green200,
-            tasks = KanbanBoardSampleData.doneTasks,
+            tasks = KanbanBoardSampleData.Tasks.filter { it.status == TaskStatus.DONE },
         ),
     )
 
@@ -131,8 +132,8 @@ class ProgressCardPreviewProvider : PreviewParameterProvider<ProgressCardPreview
 @Preview(showBackground = true)
 @Composable
 private fun ProgressCardPreview(
-    @PreviewParameter(ProgressCardPreviewProvider:: class)
-model:ProgressCardPreviewModel,
+    @PreviewParameter(ProgressCardPreviewProvider::class)
+    model: ProgressCardPreviewModel,
 ) {
     ProgressCard(
         title = model.title, // 헤더:TO DO/In Progress/Done

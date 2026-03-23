@@ -19,9 +19,7 @@ import woowacourse.kanban.ui.TaskUIMapper
 @Preview(showBackground = true)
 fun App() {
     KanbanBoard(
-        todoTasks = KanbanBoardSampleData.todoTasks,
-        inProgressTasks = KanbanBoardSampleData.inProgressTasks,
-        doneTasks = KanbanBoardSampleData.doneTasks,
+        tasks = KanbanBoardSampleData.Tasks
     )
 }
 

@@ -42,23 +42,19 @@ import woowacourse.kanban.newTaskCreate.data.TaskStatus
 
 @Composable
 fun KanbanBoard(
-    todoTasks: List<Task>,
-    inProgressTasks: List<Task>,
-    doneTasks: List<Task>,
+    tasks: List<Task>,
 ) {
     // 새 태스크 생성 버튼을 눌렀을 때 상태를 변경하기 위함
     var isDialogOpen by remember { mutableStateOf(false) }
 
-    val todoTaskState = remember { mutableStateListOf<Task>().apply { addAll(todoTasks) } }
-    val inprogressState = remember { mutableStateListOf<Task>().apply { addAll(inProgressTasks) } }
-    val doneState = remember { mutableStateListOf<Task>().apply { addAll(doneTasks) } }
+    val taskState = remember { mutableStateListOf<Task>().apply { addAll(tasks) } }
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
     Box(
         modifier = Modifier
-            .size(1295.dp, 909.dp)
+            .size(1295.dp, 909.dp),
     ) {
         Column(
             modifier = Modifier
@@ -68,8 +64,8 @@ fun KanbanBoard(
         ) {
             // 헤더
             Header(
-                totalCount = todoTaskState.size + inprogressState.size + doneState.size,
-                doneCount = doneState.size,
+                totalCount = tasks.size,
+                doneCount = tasks.count { it.status == TaskStatus.DONE },
                 onClick = { isDialogOpen = true },
             )
             Row(
@@ -82,21 +78,21 @@ fun KanbanBoard(
                     headerColor = CustomColor.Blue600,
                     bodyColor = CustomColor.Blue50,
                     borderColor = CustomColor.Blue200,
-                    tasks = todoTaskState,
+                    tasks = taskState.filter { it.status == TaskStatus.TO_DO },
                 )
                 ProgressCard(
                     title = "In Progress",
                     headerColor = CustomColor.Orange700,
                     bodyColor = CustomColor.Yellow100,
                     borderColor = CustomColor.Yellow300,
-                    tasks = inprogressState,
+                    tasks = taskState.filter { it.status == TaskStatus.IN_PROGRESS },
                 )
                 ProgressCard(
                     title = "Done",
                     headerColor = CustomColor.Green700,
                     bodyColor = CustomColor.Green50,
                     borderColor = CustomColor.Green200,
-                    tasks = doneState,
+                    tasks = taskState.filter { it.status == TaskStatus.DONE },
                 )
             }
         }
@@ -110,20 +106,20 @@ fun KanbanBoard(
             Snackbar {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = snackbarData.visuals.message,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     )
                     IconButton(
                         onClick = { snackbarData.dismiss() },
-                        modifier = Modifier.size(40.dp)
+                        modifier = Modifier.size(40.dp),
                     ) {
                         Icon(
                             painter = painterResource(Res.drawable.cancel_button),
                             contentDescription = "snackbar close",
-                            modifier = Modifier.size(24.dp)
+                            modifier = Modifier.size(24.dp),
                         )
                     }
                 }
@@ -133,11 +129,7 @@ fun KanbanBoard(
             CreateNewTaskDialogOverlay(
                 onDismiss = { isDialogOpen = false },
                 onCreateTask = { task ->
-                    when (task.status) {
-                        TaskStatus.TO_DO -> todoTaskState.add(task)
-                        TaskStatus.IN_PROGRESS -> inprogressState.add(task)
-                        TaskStatus.DONE -> doneState.add(task)
-                    }
+                    taskState.add(task)
                     scope.launch {
                         snackbarHostState.showSnackbar(
                             message = "새로운 태스크가 추가되었습니다.",
@@ -155,8 +147,6 @@ fun KanbanBoard(
 private fun KanbanBoardPreview() {
 
     KanbanBoard(
-        todoTasks = KanbanBoardSampleData.todoTasks,
-        inProgressTasks = KanbanBoardSampleData.inProgressTasks,
-        doneTasks = KanbanBoardSampleData.doneTasks,
+        tasks = KanbanBoardSampleData.Tasks,
     )
 }
